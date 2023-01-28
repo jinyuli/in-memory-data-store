@@ -5,23 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/checkstyle/checkstyle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/checkstyle/google_checks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/checkstyle/sun_checks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientRequestProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/CommandReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/RequestProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/ClientCommandReaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/checkstyle/suppression_filter.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandOptionConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandOptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompoundCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/InvalidCommandException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/datastructure/DataType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandConfigTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/util/ByteWordFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/util/Pair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/util/Triple.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/bio/BioServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/checkstyle/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config/checkstyle/checkstyle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/ClientCommandReaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/ClientCommandReaderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +61,12 @@
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="in-memory-data-store" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="help" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -70,8 +77,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -97,7 +105,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "D:/DevTools/gradle-7.6",
-    "project.structure.last.edited": "Problems",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java"
@@ -109,7 +117,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.in-memory-data-store [build]">
-    <configuration name="CommandReaderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CommandConfigTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -122,7 +130,30 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codeloam.network.bio.CommandReaderTest&quot;" />
+            <option value="&quot;com.codeloam.memory.store.command.CommandConfigTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CommandConfigTest.testParse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.codeloam.memory.store.command.CommandConfigTest.testParse&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -137,34 +168,13 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="in-memory-data-store [checkstyleMain]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="checkstyleMain" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -219,14 +229,25 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.in-memory-data-store [build]" />
+        <item itemvalue="Gradle.CommandConfigTest" />
+        <item itemvalue="Gradle.CommandConfigTest.testParse" />
         <item itemvalue="Gradle.in-memory-data-store [testClasses]" />
         <item itemvalue="Gradle.in-memory-data-store [checkstyleTest]" />
-        <item itemvalue="Gradle.in-memory-data-store [checkstyleMain]" />
-        <item itemvalue="Gradle.CommandReaderTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />

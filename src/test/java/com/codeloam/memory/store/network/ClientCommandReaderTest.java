@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
+import com.codeloam.memory.store.util.ByteWordFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -59,21 +59,10 @@ public class ClientCommandReaderTest {
     }
 
     private ByteWord getByteWord(String word) {
-        return ByteWord.create(word.getBytes(StandardCharsets.UTF_8));
+        return ByteWordFactory.getByteWord(word);
     }
 
     private ByteWord getMultiByteWord(String word) {
-        List<byte[]> bytes = new ArrayList<>();
-        byte[] wordBytes = word.getBytes(StandardCharsets.UTF_8);
-        for (int i = 0; i < wordBytes.length; i += 32) {
-            int end = i + 32;
-            if (end > wordBytes.length) {
-                end = wordBytes.length;
-            }
-            byte[] sub = new byte[(end - i)];
-            System.arraycopy(wordBytes, i, sub, 0, sub.length);
-            bytes.add(sub);
-        }
-        return ByteWord.create(bytes);
+        return ByteWordFactory.getMultiByteWord(word);
     }
 }

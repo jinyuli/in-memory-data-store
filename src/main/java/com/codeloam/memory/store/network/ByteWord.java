@@ -12,6 +12,27 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 public abstract class ByteWord {
+    public static final ByteWord NULL = new ByteWord() {
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public byte[] get() {
+            return null;
+        }
+
+        @Override
+        public String getString() {
+            return null;
+        }
+
+        @Override
+        public String toString() {
+            return "NULL";
+        }
+    };
 
     /**
      * Create an instance of ByteWord with given byte array.
@@ -19,6 +40,7 @@ public abstract class ByteWord {
      * <p>throw IllegalArgumentException if the given array is null or empty.
      *
      * @param word byte array
+     *
      * @return an instance of ByteWord
      */
     public static ByteWord create(byte[] word) {
@@ -34,6 +56,7 @@ public abstract class ByteWord {
      * <p>throw IllegalArgumentException if the given list is null or empty.
      *
      * @param word a list of byte arrays
+     *
      * @return an instance of ByteWord
      */
     public static ByteWord create(List<byte[]> word) {
@@ -60,6 +83,23 @@ public abstract class ByteWord {
      */
     public abstract byte[] get();
 
+    /**
+     * Whether the word is a number, integer or float.
+     *
+     * @return true if it's a number
+     */
+    public boolean isNumber() {
+        String str = getString();
+        return str != null && str.matches("\\d+(\\.\\d+)?");
+    }
+
+    /**
+     * String representation.
+     *
+     * @return string
+     */
+    public abstract String getString();
+
     private static class SingleBytesWord extends ByteWord {
         private final byte[] word;
 
@@ -78,6 +118,11 @@ public abstract class ByteWord {
         @Override
         public byte[] get() {
             return word;
+        }
+
+        @Override
+        public String getString() {
+            return new String(word);
         }
 
         @Override
@@ -140,6 +185,11 @@ public abstract class ByteWord {
                 }
             }
             return flattenedWord;
+        }
+
+        @Override
+        public String getString() {
+            return new String(get());
         }
 
         @Override
