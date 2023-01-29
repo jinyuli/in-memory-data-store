@@ -1,5 +1,6 @@
 package com.codeloam.memory.store.command;
 
+import com.codeloam.memory.store.datastructure.DataType;
 import com.codeloam.memory.store.network.ByteWord;
 import com.codeloam.memory.store.util.ByteWordFactory;
 import com.codeloam.memory.store.util.Pair;
@@ -16,26 +17,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
- * Test CommandConfig.
+ * Test CommandFactory.
  *
  * @author jinyu.li
  * @since 1.0
  */
-public class CommandConfigTest {
+public class CommandFactoryTest {
     @Test
     public void testParse() {
         List<Triple<CommandConfig, Command, String>> triples = List.of(
-                new Triple<>(new CommandConfig("GET", true, false, false, null),
+                new Triple<>(new CommandConfig("GET", true, false,
+                        false, null, DataType.String),
                         new SimpleCommand("GET", getByteWord("test"), null, null),
                         "GET test"),
-                new Triple<>(new CommandConfig("SET", true, true, false, null),
+                new Triple<>(new CommandConfig("SET", true, true,
+                        false, null, DataType.String),
                         new SimpleCommand("SET", getByteWord("test"), List.of(getByteWord("value")), null),
                         "SET test value"),
                 new Triple<>(new CommandConfig("SET", true, true, false,
                         List.of(
                                 new CommandOptionConfig("NX", false, false, false, null),
                                 new CommandOptionConfig("EX", false, true, true, null),
-                                new CommandOptionConfig("GET", false, false, false, null))),
+                                new CommandOptionConfig("GET", false, false, false, null)),
+                        DataType.String),
                         new SimpleCommand("SET", getByteWord("test"),
                                 List.of(getByteWord("value")), Map.of("NX", ByteWord.NULL,
                                 "GET", ByteWord.NULL, "EX", getByteWord("100"))),
@@ -43,7 +47,7 @@ public class CommandConfigTest {
         );
         for (var triple : triples) {
             List<ByteWord> words = simpleParse(triple.value3());
-            Command command = triple.value1().parse(words);
+            Command command = CommandFactory.getInstance().parse(triple.value1(), words);
             assertEquals(triple.value2(), command, triple.value3());
         }
     }
@@ -51,28 +55,35 @@ public class CommandConfigTest {
     @Test
     public void testParseFailed() {
         List<Pair<CommandConfig, String>> data = List.of(
-                new Pair<>(new CommandConfig("GET", true, false, false, null),
+                new Pair<>(new CommandConfig("GET", true, false,
+                        false, null, DataType.String),
                         "GET"),
-                new Pair<>(new CommandConfig("SET", true, true, false, null),
+                new Pair<>(new CommandConfig("SET", true, true,
+                        false, null, DataType.String),
                         "SET test "),
                 new Pair<>(new CommandConfig("SET", true, true, false,
                         List.of(
-                                new CommandOptionConfig("EX", false, true, false, null))),
+                                new CommandOptionConfig("EX", false, true, false, null)),
+                        DataType.String),
                         "SET test value EX"),
                 new Pair<>(new CommandConfig("SET", true, true, false,
                         List.of(
-                                new CommandOptionConfig("EX", true, true, false, null))),
+                                new CommandOptionConfig("EX", true, true, false, null)),
+                        DataType.String),
                         "SET test value"),
                 new Pair<>(new CommandConfig("SET", true, true, false,
                         List.of(
                                 new CommandOptionConfig("NX", false, false, false, null),
                                 new CommandOptionConfig("EX", false, true, true, null),
-                                new CommandOptionConfig("GET", false, false, false, null))),
+                                new CommandOptionConfig("GET", false, false, false, null)),
+                        DataType.String),
                         "SET test value NX GET EX 1a00")
         );
         for (var d : data) {
             List<ByteWord> words = simpleParse(d.value2());
-            assertThrows(InvalidCommandException.class, () -> d.value1().parse(words), d.value2());
+            assertThrows(InvalidCommandException.class,
+                    () -> CommandFactory.getInstance().parse(d.value1(), words),
+                    d.value2());
         }
     }
 
