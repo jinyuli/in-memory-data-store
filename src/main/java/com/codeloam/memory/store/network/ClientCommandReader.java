@@ -1,5 +1,7 @@
 package com.codeloam.memory.store.network;
 
+import com.codeloam.memory.store.command.InvalidCommandException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -17,6 +19,8 @@ public class ClientCommandReader implements CommandReader {
     private static final byte BYTE_DOUBLE_QUOTE = '"';
     private static final byte BYTE_SINGLE_QUOTE = '\'';
     private static final byte BYTE_BACKSLASH = '\\';
+
+    private static final int MAX_COMMAND_LENGTH = 512 * 1024 * 1024;
     private final int bufSize;
 
     /**
@@ -39,8 +43,13 @@ public class ClientCommandReader implements CommandReader {
         byte[] buf = new byte[bufSize];
         int count = 0;
         List<byte[]> bufList = new ArrayList<>();
+        int totalLen = 0;
         while (count >= 0) {
             count = stream.read(buf);
+            totalLen += count;
+            if (totalLen > MAX_COMMAND_LENGTH) {
+                throw new InvalidCommandException("command is too long");
+            }
             if (count == buf.length) {
                 bufList.add(buf);
                 buf = new byte[bufSize];

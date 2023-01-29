@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandConfigTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompoundCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompositeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,17 +225,6 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />

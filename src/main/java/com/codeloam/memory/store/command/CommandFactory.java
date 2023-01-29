@@ -122,7 +122,8 @@ public class CommandFactory {
             }
         }
 
-        return new SimpleCommand(commandConfig.name(), key, values, optionMap.isEmpty() ? null : optionMap);
+        return new SimpleCommand(commandConfig.name(), commandConfig.dataType(), key, values,
+                optionMap.isEmpty() ? null : optionMap);
     }
 
     private int parseOptions(CommandConfig commandConfig, List<CommandOptionConfig> optionConfigs, List<ByteWord> words,

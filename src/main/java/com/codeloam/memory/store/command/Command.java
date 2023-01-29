@@ -1,5 +1,7 @@
 package com.codeloam.memory.store.command;
 
+import com.codeloam.memory.store.datastructure.DataType;
+
 import java.util.Objects;
 
 /**
@@ -14,9 +16,15 @@ public abstract class Command {
      * required
      */
     protected String name;
+    protected DataType dataType;
 
-    public Command(String name) {
+    public Command(String name, DataType dataType) {
         this.name = name;
+        this.dataType = dataType;
+    }
+
+    public DataType getDataType() {
+        return dataType;
     }
 
     public String getName() {

@@ -1,5 +1,6 @@
 package com.codeloam.memory.store.command;
 
+import com.codeloam.memory.store.datastructure.DataType;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.util.List;
@@ -28,12 +29,14 @@ public class SimpleCommand extends Command {
      * Constructor.
      *
      * @param name name of command
+     * @param dataType data type
      * @param key key, optional
      * @param values values, optional
      * @param options options, optional
      */
-    public SimpleCommand(String name, ByteWord key, List<ByteWord> values, Map<String, ByteWord> options) {
-        super(name);
+    public SimpleCommand(String name, DataType dataType, ByteWord key,
+                         List<ByteWord> values, Map<String, ByteWord> options) {
+        super(name, dataType);
         this.key = key;
         this.values = values;
         this.options = options;
