@@ -1,6 +1,6 @@
 package com.codeloam.memory.store.command;
 
-import com.codeloam.memory.store.datastructure.DataType;
+import com.codeloam.memory.store.database.DataType;
 import com.codeloam.memory.store.network.ByteWord;
 import com.codeloam.memory.store.util.ByteWordFactory;
 import com.codeloam.memory.store.util.Pair;
@@ -28,11 +28,11 @@ public class CommandFactoryTest {
         List<Triple<CommandConfig, Command, String>> triples = List.of(
                 new Triple<>(new CommandConfig("GET", true, false,
                         false, null, DataType.String),
-                        new SimpleCommand("GET", getByteWord("test"), null, null),
+                        new SimpleCommand("GET", DataType.String, getByteWord("test"), null, null),
                         "GET test"),
                 new Triple<>(new CommandConfig("SET", true, true,
                         false, null, DataType.String),
-                        new SimpleCommand("SET", getByteWord("test"), List.of(getByteWord("value")), null),
+                        new SimpleCommand("SET", DataType.String, getByteWord("test"), List.of(getByteWord("value")), null),
                         "SET test value"),
                 new Triple<>(new CommandConfig("SET", true, true, false,
                         List.of(
@@ -40,7 +40,7 @@ public class CommandFactoryTest {
                                 new CommandOptionConfig("EX", false, true, true, null),
                                 new CommandOptionConfig("GET", false, false, false, null)),
                         DataType.String),
-                        new SimpleCommand("SET", getByteWord("test"),
+                        new SimpleCommand("SET", DataType.String, getByteWord("test"),
                                 List.of(getByteWord("value")), Map.of("NX", ByteWord.NULL,
                                 "GET", ByteWord.NULL, "EX", getByteWord("100"))),
                         "SET test value NX GET EX 100")

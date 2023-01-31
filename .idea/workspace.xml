@@ -5,12 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/JimdsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DatabaseFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DatabaseType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsHash.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/UnknownCommandException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/ErrorResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/JimdsResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/ResultType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/AbstractServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkArray.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkBulkString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkDataType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkInteger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkSimpleString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompoundCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompositeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompositeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompositeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/datastructure/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientRequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientRequestProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/RequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/RequestProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandFactoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +120,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "D:/DevTools/gradle-7.6",
@@ -102,6 +134,9 @@
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.codeloam.memory.store.network" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.codeloam.memory.store.network.data" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.in-memory-data-store [build]">

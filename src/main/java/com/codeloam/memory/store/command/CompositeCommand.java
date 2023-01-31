@@ -1,6 +1,7 @@
 package com.codeloam.memory.store.command;
 
-import com.codeloam.memory.store.datastructure.DataType;
+import com.codeloam.memory.store.database.DataType;
+import com.codeloam.memory.store.network.ByteWord;
 
 import java.util.List;
 
@@ -20,5 +21,25 @@ public class CompositeCommand extends Command {
 
     public List<Command> getCommands() {
         return commands;
+    }
+
+    @Override
+    public ByteWord getKey() {
+        return null;
+    }
+
+    @Override
+    public List<ByteWord> getValues() {
+        return null;
+    }
+
+    @Override
+    public ByteWord getOption(String optionName) {
+        return null;
+    }
+
+    @Override
+    public boolean hasOption(String optionName) {
+        return false;
     }
 }

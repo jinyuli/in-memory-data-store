@@ -1,6 +1,6 @@
 package com.codeloam.memory.store.command;
 
-import com.codeloam.memory.store.datastructure.DataType;
+import com.codeloam.memory.store.database.DataType;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.util.List;
@@ -42,10 +42,22 @@ public class SimpleCommand extends Command {
         this.options = options;
     }
 
+    @Override
     public ByteWord getKey() {
         return key;
     }
 
+    @Override
+    public ByteWord getOption(String optionName) {
+        return options == null ? null : options.get(optionName);
+    }
+
+    @Override
+    public boolean hasOption(String optionName) {
+        return options != null && options.containsKey(optionName);
+    }
+
+    @Override
     public List<ByteWord> getValues() {
         return values;
     }

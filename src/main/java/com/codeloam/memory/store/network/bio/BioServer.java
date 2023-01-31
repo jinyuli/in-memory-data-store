@@ -1,15 +1,18 @@
 package com.codeloam.memory.store.network.bio;
 
+import com.codeloam.memory.store.database.DatabaseType;
+import com.codeloam.memory.store.network.AbstractServer;
+import com.codeloam.memory.store.network.ClientRequestProcessor;
+import com.codeloam.memory.store.network.RequestProcessor;
+import com.codeloam.memory.store.network.Server;
+
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.Closeable;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-
-import com.codeloam.memory.store.network.ClientRequestProcessor;
-import com.codeloam.memory.store.network.RequestProcessor;
-import com.codeloam.memory.store.network.Server;
 
 /**
  * BIO server.
@@ -17,7 +20,7 @@ import com.codeloam.memory.store.network.Server;
  * @author jinyu.li
  * @since 1.0
  */
-public class BioServer implements Server {
+public class BioServer extends AbstractServer implements Server {
     private ServerSocket serverSocket;
     private final String host;
     private final int port;
@@ -30,17 +33,30 @@ public class BioServer implements Server {
      * @param port port
      */
     public BioServer(String host, int port) {
-        this(host, port, new ClientRequestProcessor());
+        this(host, port, new ClientRequestProcessor(), null);
+    }
+
+    /**
+     * Init server with given database type, host and port.
+     *
+     * @param host host
+     * @param port port
+     * @param type database type
+     */
+    public BioServer(String host, int port, DatabaseType type) {
+        this(host, port, new ClientRequestProcessor(), type);
     }
 
     /**
      * Init server with given host, port, and process.
      *
-     * @param host host
-     * @param port port
+     * @param host             host
+     * @param port             port
      * @param requestProcessor request processor
+     * @param type             database type
      */
-    public BioServer(String host, int port, RequestProcessor requestProcessor) {
+    public BioServer(String host, int port, RequestProcessor requestProcessor, DatabaseType type) {
+        super(type);
         this.host = host;
         this.port = port;
         this.requestProcessor = requestProcessor;
@@ -70,13 +86,19 @@ public class BioServer implements Server {
 
     private void process(Socket socket) {
         BufferedInputStream inputStream = null;
+        BufferedOutputStream outputStream = null;
         try {
             inputStream = new BufferedInputStream(socket.getInputStream());
-            requestProcessor.process(inputStream);
+            outputStream = new BufferedOutputStream(socket.getOutputStream());
+            requestProcessor.process(database, inputStream, outputStream);
+            outputStream.flush();
         } catch (IOException e) {
+            // should only be thrown when writing data to output
+            // if input throws IOException, an error message will be written to output.
             throw new RuntimeException(e);
         } finally {
             closeQuietly(inputStream);
+            closeQuietly(outputStream);
             closeQuietly(socket);
         }
     }

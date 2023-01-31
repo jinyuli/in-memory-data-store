@@ -1,6 +1,6 @@
 package com.codeloam.memory.store.command;
 
-import com.codeloam.memory.store.datastructure.DataType;
+import com.codeloam.memory.store.database.DataType;
 
 import java.util.List;
 

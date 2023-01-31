@@ -1,6 +1,6 @@
 package com.codeloam.memory.store.command;
 
-import com.codeloam.memory.store.datastructure.DataType;
+import com.codeloam.memory.store.database.DataType;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.util.ArrayList;
@@ -28,6 +28,10 @@ public class CommandFactory {
         for (CommandConfig commandConfig : commandConfigs) {
             commandMap.put(commandConfig.name(), commandConfig);
         }
+    }
+
+    public static Command parseCommand(List<ByteWord> words) {
+        return getInstance().generate(words);
     }
 
     /**

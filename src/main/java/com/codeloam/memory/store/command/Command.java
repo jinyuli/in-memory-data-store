@@ -1,7 +1,9 @@
 package com.codeloam.memory.store.command;
 
-import com.codeloam.memory.store.datastructure.DataType;
+import com.codeloam.memory.store.database.DataType;
+import com.codeloam.memory.store.network.ByteWord;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -23,6 +25,32 @@ public abstract class Command {
         this.dataType = dataType;
     }
 
+    /**
+     * Get command key.
+     * @return key or null
+     */
+    public abstract ByteWord getKey();
+
+    /**
+     * Get command value.
+     * @return value or null
+     */
+    public abstract List<ByteWord> getValues();
+
+    /**
+     * Get command option value.
+     * @param optionName option name
+     * @return option value if exists, or null
+     */
+    public abstract ByteWord getOption(String optionName);
+
+    /**
+     * Whether the command has an option with given name.
+     * @param optionName option name
+     * @return true if has
+     */
+    public abstract boolean hasOption(String optionName);
+
     public DataType getDataType() {
         return dataType;
     }
@@ -30,6 +58,7 @@ public abstract class Command {
     public String getName() {
         return name;
     }
+
 
     @Override
     public boolean equals(Object o) {

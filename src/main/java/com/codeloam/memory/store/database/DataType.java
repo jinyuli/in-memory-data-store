@@ -1,4 +1,4 @@
-package com.codeloam.memory.store.datastructure;
+package com.codeloam.memory.store.database;
 
 /**
  * Represent data types.
@@ -7,11 +7,12 @@ package com.codeloam.memory.store.datastructure;
  * @since 1.0
  */
 public enum DataType {
-    String(0x01),
-    List(0x01 << 1),
-    Hash(0x01 << 2),
-    Set(0x01 << 3),
-    SortedSet(0x01 << 4);
+    None(0),
+    String(1),
+    List(2),
+    Hash(3),
+    Set(4),
+    SortedSet(5);
 
     private final int type;
 
