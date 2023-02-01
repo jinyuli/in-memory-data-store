@@ -4,11 +4,9 @@ import com.codeloam.memory.store.command.Command;
 import com.codeloam.memory.store.database.DataType;
 import com.codeloam.memory.store.database.Database;
 import com.codeloam.memory.store.database.JimdsData;
-import com.codeloam.memory.store.database.JimdsString;
-import com.codeloam.memory.store.database.result.ErrorResult;
 import com.codeloam.memory.store.database.JimdsHash;
 import com.codeloam.memory.store.database.JimdsObject;
-import com.codeloam.memory.store.database.result.JimdsResult;
+import com.codeloam.memory.store.database.JimdsString;
 import com.codeloam.memory.store.database.UnknownCommandException;
 import com.codeloam.memory.store.network.ByteWord;
 import com.codeloam.memory.store.network.data.NetworkBulkString;
@@ -47,7 +45,7 @@ public class SimpleDatabase implements Database {
 
     private NetworkData executeStringCommand(Command command) {
         switch (command.getName()) {
-            case "GET": {
+            case "GET" -> {
                 JimdsObject object = database.get(command.getKey());
                 if (object == null) {
                     return NetworkBulkString.NULL;
@@ -58,12 +56,12 @@ public class SimpleDatabase implements Database {
                 }
                 return new NetworkBulkString(((JimdsString) data).get());
             }
-            case "SET": {
+            case "SET" -> {
                 JimdsObject object = database.get(command.getKey());
                 if (object == null) {
                     object = new JimdsObject();
                     object.setValue(new SimpleString(command.getValues().get(0)));
-                    database.put(command.getKey(), object);
+                    database.set(command.getKey(), object);
                     return NetworkSimpleString.OK;
                 } else {
                     JimdsData data = object.getValue();
@@ -76,8 +74,7 @@ public class SimpleDatabase implements Database {
                     return new NetworkBulkString(oldValue);
                 }
             }
-            default:
-                throw new UnknownCommandException(command.getName());
+            default -> throw new UnknownCommandException(command.getName());
         }
     }
 }

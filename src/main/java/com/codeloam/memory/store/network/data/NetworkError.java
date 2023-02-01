@@ -28,6 +28,7 @@ public class NetworkError extends NetworkData {
     @Override
     public void write(OutputStream output) throws IOException {
         output.write('-');
+        write(output, error);
         output.write(END);
     }
 }

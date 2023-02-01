@@ -32,7 +32,8 @@ public class CommandFactoryTest {
                         "GET test"),
                 new Triple<>(new CommandConfig("SET", true, true,
                         false, null, DataType.String),
-                        new SimpleCommand("SET", DataType.String, getByteWord("test"), List.of(getByteWord("value")), null),
+                        new SimpleCommand("SET", DataType.String, getByteWord("test"), List.of(getByteWord("value")),
+                                null),
                         "SET test value"),
                 new Triple<>(new CommandConfig("SET", true, true, false,
                         List.of(

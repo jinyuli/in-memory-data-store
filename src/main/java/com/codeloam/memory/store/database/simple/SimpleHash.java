@@ -18,12 +18,17 @@ public class SimpleHash<K extends Comparable<K>, V> extends JimdsHash<K, V> {
     }
 
     @Override
+    public int size() {
+        return hashMap.size();
+    }
+
+    @Override
     public V get(K key) {
         return hashMap.get(key);
     }
 
     @Override
-    public V put(K key, V value) {
+    public V set(K key, V value) {
         return hashMap.put(key, value);
     }
 

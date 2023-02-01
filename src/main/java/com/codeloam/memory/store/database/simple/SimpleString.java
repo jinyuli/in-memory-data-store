@@ -24,7 +24,7 @@ public class SimpleString extends JimdsString {
     }
 
     @Override
-    public int length() {
+    public int size() {
         return byteWord.size();
     }
 

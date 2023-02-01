@@ -19,7 +19,7 @@ public abstract class JimdsString extends JimdsData {
      *
      * @return string length
      */
-    public abstract int length();
+    public abstract int size();
 
     /**
      * Get current string representation.

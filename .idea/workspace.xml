@@ -5,41 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/JimdsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DatabaseFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DatabaseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsHash.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/UnknownCommandException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/ErrorResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/JimdsResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/ResultType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/AbstractServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkBulkString.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkDataType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkInteger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkSimpleString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/NetworkArrayTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/NetworkBulkStringTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/NetworkErrorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/NetworkIntegerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/NetworkSimpleStringTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompositeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CompositeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/SimpleCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/datastructure/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DataType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientRequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientRequestProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/RequestProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/RequestProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/ErrorResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/JimdsResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/result/ResultType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/NetworkError.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/command/CommandFactoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,19 +99,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "D:/DevTools/gradle-7.6",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DevTools/gradle-7.6&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.codeloam.memory.store.network" />
@@ -140,7 +121,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.in-memory-data-store [build]">
-    <configuration name="CommandConfigTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="NetworkArrayTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -153,7 +134,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codeloam.memory.store.command.CommandConfigTest&quot;" />
+            <option value="&quot;com.codeloam.memory.store.network.data.NetworkArrayTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -163,7 +144,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="CommandConfigTest.testParse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="NetworkArrayTest.testWriteNull" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -176,7 +157,53 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codeloam.memory.store.command.CommandConfigTest.testParse&quot;" />
+            <option value="&quot;com.codeloam.memory.store.network.data.NetworkArrayTest.testWriteNull&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="NetworkBulkStringTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.codeloam.memory.store.network.data.NetworkBulkStringTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="NetworkErrorTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.codeloam.memory.store.network.data.NetworkErrorTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -207,55 +234,13 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="in-memory-data-store [checkstyleTest]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="checkstyleTest" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="in-memory-data-store [testClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="testClasses" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.in-memory-data-store [build]" />
-        <item itemvalue="Gradle.CommandConfigTest" />
-        <item itemvalue="Gradle.CommandConfigTest.testParse" />
-        <item itemvalue="Gradle.in-memory-data-store [testClasses]" />
-        <item itemvalue="Gradle.in-memory-data-store [checkstyleTest]" />
+        <item itemvalue="Gradle.NetworkArrayTest" />
+        <item itemvalue="Gradle.NetworkArrayTest.testWriteNull" />
+        <item itemvalue="Gradle.NetworkBulkStringTest" />
+        <item itemvalue="Gradle.NetworkErrorTest" />
       </list>
     </recent_temporary>
   </component>

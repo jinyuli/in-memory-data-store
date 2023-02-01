@@ -14,6 +14,12 @@ public abstract class JimdsHash<K extends Comparable<K>, T> extends JimdsData {
     }
 
     /**
+     * Element count
+     * @return size
+     */
+    public abstract int size();
+
+    /**
      * Get value by key.
      *
      * @param key key
@@ -31,7 +37,7 @@ public abstract class JimdsHash<K extends Comparable<K>, T> extends JimdsData {
      * @return old value if exists, or null
      * @throws NullPointerException if key or value is null
      */
-    public abstract T put(K key, T value);
+    public abstract T set(K key, T value);
 
     /**
      * Whether given key exists in hash.
