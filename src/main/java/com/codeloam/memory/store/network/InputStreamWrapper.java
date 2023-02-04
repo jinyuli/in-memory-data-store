@@ -56,10 +56,10 @@ public class InputStreamWrapper {
      */
     public void skip(int bytes) throws IOException {
         offset += bytes;
-        while (offset >= count) {
-            int lastCount = count;
+        // if offset == count, then that may be the last byte,
+        // so no need to read more data.
+        while (offset > count) {
             readData();
-            offset -= lastCount;
         }
     }
 
@@ -137,8 +137,9 @@ public class InputStreamWrapper {
      */
     private void readData() throws IOException {
         while (offset >= count) {
+            int last = count;
             count = inputStream.read(buf);
-            offset = 0;
+            offset -= last;
             if (count < 0) {
                 break;
             }

@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * BIO server.
@@ -30,6 +31,8 @@ public class BioServer extends AbstractServer implements Server {
     private final RequestProcessor requestProcessor;
 
     private final Database database;
+
+    private final AtomicBoolean stop;
 
     /**
      * Init server with given host and port.
@@ -66,6 +69,7 @@ public class BioServer extends AbstractServer implements Server {
         this.port = port;
         this.requestProcessor = requestProcessor;
         this.database = DatabaseFactory.create(type);
+        this.stop = new AtomicBoolean(false);
     }
 
     /**
@@ -76,17 +80,20 @@ public class BioServer extends AbstractServer implements Server {
         try {
             serverSocket = new ServerSocket();
             serverSocket.bind(new InetSocketAddress(host, port));
-            while (true) {
+            while (!stop.get()) {
                 Socket socket = serverSocket.accept();
                 process(socket);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            closeQuietly(serverSocket);
         }
     }
 
     @Override
     public void close() throws Exception {
+        stop.set(true);
         closeQuietly(serverSocket);
     }
 
@@ -98,11 +105,12 @@ public class BioServer extends AbstractServer implements Server {
             outputStream = new BufferedOutputStream(socket.getOutputStream());
             requestProcessor.process(database, inputStream, outputStream);
             outputStream.flush();
-        } catch (IOException e) {
+        } catch (Throwable e) {
             // should only be thrown when writing data to output
             // if input throws IOException, an error message will be written to output.
             // throw new RuntimeException(e);
             // ignore the message, and close socket
+            e.printStackTrace();
         } finally {
             closeQuietly(inputStream);
             closeQuietly(outputStream);
@@ -117,6 +125,7 @@ public class BioServer extends AbstractServer implements Server {
             }
         } catch (IOException e) {
             // ignore
+            e.printStackTrace();
         }
     }
 

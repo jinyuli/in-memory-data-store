@@ -67,7 +67,6 @@ public class ClientCommandReader implements CommandReader {
     private List<ByteWord> readResp(InputStreamWrapper inputWrapper, byte prefix) throws IOException {
         // skip the first byte
         inputWrapper.skip(1);
-        List<ByteWord> byteWords = new ArrayList<>();
         switch (prefix) {
             case '*':
                 return readArray(inputWrapper);

@@ -6,14 +6,54 @@ plugins {
 group 'com.codeloam'
 version '1.0-SNAPSHOT'
 
+sourceSets {
+    integrationTest {
+        java
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+test {
+    testLogging {
+        events "passed", "failed", "skipped"
+    }
+}
+
+tasks.register('integrationTest', Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    shouldRunAfter test
+
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "failed", "skipped"
+    }
+}
+
+check.dependsOn integrationTest
+
 repositories {
     mavenCentral()
+}
+
+configurations {
+    intTestImplementation.extendsFrom implementation
+    intTestRuntimeOnly.extendsFrom runtimeOnly
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    integrationTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    integrationTestImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
+    integrationTestImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
