@@ -27,26 +27,32 @@ public abstract class Command {
 
     /**
      * Get command key.
+     *
      * @return key or null
      */
     public abstract ByteWord getKey();
 
     /**
      * Get command value.
+     *
      * @return value or null
      */
     public abstract List<ByteWord> getValues();
 
     /**
      * Get command option value.
+     *
      * @param optionName option name
+     *
      * @return option value if exists, or null
      */
     public abstract ByteWord getOption(String optionName);
 
     /**
      * Whether the command has an option with given name.
+     *
      * @param optionName option name
+     *
      * @return true if has
      */
     public abstract boolean hasOption(String optionName);

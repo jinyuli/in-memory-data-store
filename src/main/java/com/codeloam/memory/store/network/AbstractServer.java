@@ -5,10 +5,12 @@ import com.codeloam.memory.store.database.DatabaseFactory;
 import com.codeloam.memory.store.database.DatabaseType;
 
 /**
+ * Base class for all Server.
+ *
  * @author jinyu.li
  * @since 1.0
  */
-public abstract class AbstractServer implements Server{
+public abstract class AbstractServer implements Server {
     protected Database database;
 
     public AbstractServer(DatabaseType type) {

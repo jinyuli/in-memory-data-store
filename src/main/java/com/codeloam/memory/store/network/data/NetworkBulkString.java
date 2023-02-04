@@ -5,7 +5,7 @@ import com.codeloam.memory.store.network.ByteWord;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents a binary-safe string.
@@ -44,5 +44,28 @@ public class NetworkBulkString extends NetworkData {
         output.write(END);
         write(output, data);
         output.write(END);
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkBulkString{"
+                + "data=" + data
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof NetworkBulkString that)) {
+            return false;
+        }
+        return Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data);
     }
 }

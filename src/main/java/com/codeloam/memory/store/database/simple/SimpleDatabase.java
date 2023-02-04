@@ -35,11 +35,22 @@ public class SimpleDatabase implements Database {
             switch (command.getDataType()) {
                 case String:
                     return executeStringCommand(command);
+                case System:
+                    return executeSystemCommand(command);
                 default:
                     return new NetworkError("Unsupported data type " + command.getName());
             }
         } catch (Throwable t) {
             return new NetworkError(t.getMessage());
+        }
+    }
+
+    private NetworkData executeSystemCommand(Command command) {
+        switch (command.getName()) {
+            case "PING" -> {
+                return new NetworkSimpleString(ByteWord.create("PONG"));
+            }
+            default -> throw new UnknownCommandException(command.getName());
         }
     }
 

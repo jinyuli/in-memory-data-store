@@ -20,11 +20,16 @@ import java.util.List;
  * @since 1.0
  */
 public class ClientRequestProcessor implements RequestProcessor {
+    private final CommandReader commandReader;
+
+    public ClientRequestProcessor(CommandReader commandReader) {
+        this.commandReader = commandReader;
+    }
+
     @Override
     public void process(Database database, InputStream inputStream, OutputStream outputStream) throws IOException {
-        ClientCommandReader clientCommandReader = new ClientCommandReader();
         try {
-            List<ByteWord> words = clientCommandReader.read(inputStream);
+            List<ByteWord> words = commandReader.read(inputStream);
             Command command = CommandFactory.parseCommand(words);
             if (command == null) {
                 throw new InvalidCommandException("Unknown command");

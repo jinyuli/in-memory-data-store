@@ -28,6 +28,10 @@ public class ByteWordFactory {
         return getMultiByteWord(word);
     }
 
+    public static ByteWord getByteWord(long word) {
+        return ByteWord.create(word);
+    }
+
     /**
      * Create MultiByteWorld from given string.
      *

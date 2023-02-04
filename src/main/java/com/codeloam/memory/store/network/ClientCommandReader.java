@@ -20,7 +20,7 @@ public class ClientCommandReader implements CommandReader {
     private static final byte BYTE_SINGLE_QUOTE = '\'';
     private static final byte BYTE_BACKSLASH = '\\';
 
-    private static final int MAX_COMMAND_LENGTH = 512 * 1024 * 1024;
+    private static final int MAX_COMMAND_LENGTH = 512 * 1024 * 1024 + 1024 * 1024;
     private final int bufSize;
 
     /**
@@ -40,26 +40,132 @@ public class ClientCommandReader implements CommandReader {
      * @throws IOException if throw by input stream
      */
     public List<ByteWord> read(InputStream stream) throws IOException {
-        byte[] buf = new byte[bufSize];
-        int count = 0;
-        List<byte[]> bufList = new ArrayList<>();
-        int totalLen = 0;
-        while (count >= 0) {
-            count = stream.read(buf);
-            totalLen += count;
-            if (totalLen > MAX_COMMAND_LENGTH) {
-                throw new InvalidCommandException("command is too long");
+        InputStreamWrapper inputWrapper = new InputStreamWrapper(stream, bufSize, MAX_COMMAND_LENGTH);
+        Byte prefix = inputWrapper.peekOneByte();
+        if (prefix == null) {
+            throw new InvalidCommandException("no command");
+        }
+        switch (prefix) {
+            case '$', '-', '+', '*', ':' -> {
+                return readResp(inputWrapper, prefix);
             }
-            if (count == buf.length) {
-                bufList.add(buf);
-                buf = new byte[bufSize];
-            } else if (count > 0) {
-                byte[] array = new byte[count];
-                System.arraycopy(buf, 0, array, 0, count);
-                bufList.add(array);
+            default -> {
+                List<byte[]> bufList = inputWrapper.readUntilStop();
+                return splitCommand(bufList);
             }
         }
-        return splitCommand(bufList);
+    }
+
+    /**
+     * Read RESP format.
+     *
+     * @param inputWrapper input
+     * @param prefix the first byte
+     * @return a list
+     * @throws IOException if thrown by input
+     */
+    private List<ByteWord> readResp(InputStreamWrapper inputWrapper, byte prefix) throws IOException {
+        // skip the first byte
+        inputWrapper.skip(1);
+        List<ByteWord> byteWords = new ArrayList<>();
+        switch (prefix) {
+            case '*':
+                return readArray(inputWrapper);
+            case '$':
+                return readBulkString(inputWrapper);
+            case ':':
+                List<ByteWord> words = readSimpleString(inputWrapper);
+                ByteWord word = words.get(0);
+                long value = Long.parseLong(word.getString());
+                return List.of(ByteWord.create(value));
+            case '+', '-':
+                return readSimpleString(inputWrapper);
+            default:
+                throw new InvalidCommandException("Unknown sign:" + prefix);
+        }
+    }
+
+    /**
+     * Array format.
+     * "*0\r\n"
+     * "*2\r\n$5\r\nhello\r\n$5\r\nworld\r\n"
+     * "*3\r\n:1\r\n:2\r\n:3\r\n"
+     *
+     * @param input input
+     * @return a list
+     * @throws IOException if thrown by input
+     */
+    private List<ByteWord> readArray(InputStreamWrapper input) throws IOException {
+        List<byte[]> bufList = input.readUntilStop();
+
+        ByteWord lengthWord = ByteWord.create(bufList);
+        int size = Integer.parseInt(lengthWord.getString());
+        if (size == -1) {
+            // TODO client should not send NULL bulk string?
+            List<ByteWord> result = new ArrayList<>();
+            result.add(null);
+            return result;
+        } else if (size == 0) {
+            return List.of();
+        }
+
+        input.skipStopSign();
+
+        List<ByteWord> result = new ArrayList<>();
+        while (size > 0) {
+            Byte prefix = input.peekOneByte();
+            switch (prefix) {
+                case '$', '-', '+', '*', ':' -> {
+                    result.addAll(readResp(input, prefix));
+                    input.skipStopSign();
+                }
+                default -> throw new InvalidCommandException("invalid resp format: " + prefix);
+            }
+            size--;
+        }
+        return result;
+    }
+
+
+    /**
+     * BulkString has the following format.
+     * "$5\r\nhello\r\n"
+     * "$0\r\n\r\n"
+     * "$-1\r\n"
+     *
+     * @param input input
+     * @return a list
+     * @throws IOException if thrown by input
+     */
+    private List<ByteWord> readBulkString(InputStreamWrapper input) throws IOException {
+        List<byte[]> bufList = input.readUntilStop();
+        input.skipStopSign();
+
+        ByteWord lengthWord = ByteWord.create(bufList);
+        int size = Integer.parseInt(lengthWord.getString());
+        if (size == -1) {
+            // TODO client should not send NULL bulk string?
+            List<ByteWord> result = new ArrayList<>();
+            result.add(null);
+            return result;
+        } else if (size == 0) {
+            return List.of();
+        }
+
+        bufList = input.read(size);
+        return List.of(ByteWord.create(bufList));
+    }
+
+    /**
+     * Read until '\r'.
+     *
+     * @param input input
+     * @return a list
+     * @throws IOException if thrown by input
+     */
+    private List<ByteWord> readSimpleString(InputStreamWrapper input) throws IOException {
+        List<byte[]> bufList = input.readUntilStop();
+        return List.of(ByteWord.create(bufList));
     }
 
     private List<ByteWord> splitCommand(List<byte[]> bufList) {
@@ -107,7 +213,7 @@ public class ClientCommandReader implements CommandReader {
                 }
                 while (i < end
                         && (buf[i] != BYTE_DOUBLE_QUOTE
-                            || (buf[i] == BYTE_DOUBLE_QUOTE && buf[i - 1] == BYTE_BACKSLASH))) {
+                        || (buf[i] == BYTE_DOUBLE_QUOTE && buf[i - 1] == BYTE_BACKSLASH))) {
                     ++i;
                 }
                 if (i < end) {
@@ -122,7 +228,7 @@ public class ClientCommandReader implements CommandReader {
                 }
                 while (i < end
                         && (buf[i] != BYTE_SINGLE_QUOTE
-                            || (buf[i] == BYTE_SINGLE_QUOTE && buf[i - 1] == BYTE_BACKSLASH))) {
+                        || (buf[i] == BYTE_SINGLE_QUOTE && buf[i - 1] == BYTE_BACKSLASH))) {
                     ++i;
                 }
                 if (i < end) {

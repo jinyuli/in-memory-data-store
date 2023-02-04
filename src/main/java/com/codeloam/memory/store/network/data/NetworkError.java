@@ -4,8 +4,11 @@ import com.codeloam.memory.store.network.ByteWord;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Objects;
 
 /**
+ * Represent Error data. Data should not include \r\n.
+ *
  * @author jinyu.li
  * @since 1.0
  */
@@ -30,5 +33,28 @@ public class NetworkError extends NetworkData {
         output.write('-');
         write(output, error);
         output.write(END);
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkError{"
+                + "error=" + error
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof NetworkError that)) {
+            return false;
+        }
+        return Objects.equals(error, that.error);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(error);
     }
 }

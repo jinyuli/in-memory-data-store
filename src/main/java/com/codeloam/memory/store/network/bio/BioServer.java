@@ -1,7 +1,10 @@
 package com.codeloam.memory.store.network.bio;
 
+import com.codeloam.memory.store.database.Database;
+import com.codeloam.memory.store.database.DatabaseFactory;
 import com.codeloam.memory.store.database.DatabaseType;
 import com.codeloam.memory.store.network.AbstractServer;
+import com.codeloam.memory.store.network.ClientCommandReader;
 import com.codeloam.memory.store.network.ClientRequestProcessor;
 import com.codeloam.memory.store.network.RequestProcessor;
 import com.codeloam.memory.store.network.Server;
@@ -26,6 +29,8 @@ public class BioServer extends AbstractServer implements Server {
     private final int port;
     private final RequestProcessor requestProcessor;
 
+    private final Database database;
+
     /**
      * Init server with given host and port.
      *
@@ -33,7 +38,7 @@ public class BioServer extends AbstractServer implements Server {
      * @param port port
      */
     public BioServer(String host, int port) {
-        this(host, port, new ClientRequestProcessor(), null);
+        this(host, port, new ClientRequestProcessor(new ClientCommandReader()), DatabaseType.Simple);
     }
 
     /**
@@ -44,7 +49,7 @@ public class BioServer extends AbstractServer implements Server {
      * @param type database type
      */
     public BioServer(String host, int port, DatabaseType type) {
-        this(host, port, new ClientRequestProcessor(), type);
+        this(host, port, new ClientRequestProcessor(new ClientCommandReader()), type);
     }
 
     /**
@@ -60,6 +65,7 @@ public class BioServer extends AbstractServer implements Server {
         this.host = host;
         this.port = port;
         this.requestProcessor = requestProcessor;
+        this.database = DatabaseFactory.create(type);
     }
 
     /**
@@ -95,7 +101,8 @@ public class BioServer extends AbstractServer implements Server {
         } catch (IOException e) {
             // should only be thrown when writing data to output
             // if input throws IOException, an error message will be written to output.
-            throw new RuntimeException(e);
+            // throw new RuntimeException(e);
+            // ignore the message, and close socket
         } finally {
             closeQuietly(inputStream);
             closeQuietly(outputStream);

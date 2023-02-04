@@ -3,6 +3,8 @@ package com.codeloam.memory.store.database;
 import com.codeloam.memory.store.JimdsException;
 
 /**
+ * Exception for unknown command.
+ *
  * @author jinyu.li
  * @since 1.0
  */

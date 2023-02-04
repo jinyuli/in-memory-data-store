@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 /**
+ * Array in RESP.
+ *
  * @author jinyu.li
  * @since 1.0
  */
@@ -39,5 +42,28 @@ public class NetworkArray extends NetworkData {
         for (NetworkData d : data) {
             d.write(output);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "NetworkArray{"
+                + "data=" + data
+                + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof NetworkArray that)) {
+            return false;
+        }
+        return Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(data);
     }
 }

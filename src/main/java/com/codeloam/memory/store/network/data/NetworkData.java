@@ -14,8 +14,9 @@ import java.nio.charset.StandardCharsets;
  */
 public abstract class NetworkData {
     public static final byte[] END = "\r\n".getBytes(StandardCharsets.UTF_8);
+
     /**
-     * Get result type
+     * Get result type.
      *
      * @return type
      */

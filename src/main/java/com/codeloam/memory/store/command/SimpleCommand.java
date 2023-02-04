@@ -17,13 +17,13 @@ public class SimpleCommand extends Command {
     /**
      * may be null.
      */
-    private ByteWord key;
+    private final ByteWord key;
 
     /**
      * Values for key, may be null, 1, or more than 1.
      */
-    private List<ByteWord> values;
-    private Map<String, ByteWord> options;
+    private final List<ByteWord> values;
+    private final Map<String, ByteWord> options;
 
     /**
      * Constructor.

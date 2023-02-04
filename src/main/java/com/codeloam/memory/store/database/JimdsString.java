@@ -5,6 +5,7 @@ import com.codeloam.memory.store.network.ByteWord;
 /**
  * String type interface.
  * As there may be multiple implementations, so use interface here.
+ *
  * @author jinyu.li
  * @since 1.0
  */

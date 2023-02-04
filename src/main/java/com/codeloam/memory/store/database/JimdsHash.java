@@ -14,7 +14,8 @@ public abstract class JimdsHash<K extends Comparable<K>, T> extends JimdsData {
     }
 
     /**
-     * Element count
+     * Element count.
+     *
      * @return size
      */
     public abstract int size();

@@ -3,6 +3,8 @@ package com.codeloam.memory.store.database;
 import com.codeloam.memory.store.database.simple.SimpleDatabase;
 
 /**
+ * Factory to create Database instance.
+ *
  * @author jinyu.li
  * @since 1.0
  */

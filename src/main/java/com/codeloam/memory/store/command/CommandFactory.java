@@ -21,6 +21,7 @@ public class CommandFactory {
 
     private CommandFactory() {
         List<CommandConfig> commandConfigs = List.of(
+                new CommandConfig("PING", false, false, false, null, DataType.System),
                 new CommandConfig("GET", true, false, false, null, DataType.String),
                 new CommandConfig("SET", true, true, false, null, DataType.String)
         );

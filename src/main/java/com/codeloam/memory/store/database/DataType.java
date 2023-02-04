@@ -7,7 +7,7 @@ package com.codeloam.memory.store.database;
  * @since 1.0
  */
 public enum DataType {
-    None(0),
+    System(0),
     String(1),
     List(2),
     Hash(3),

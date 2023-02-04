@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -31,16 +32,26 @@ public abstract class ByteWord implements Comparable<ByteWord> {
     }
 
     /**
+     * Create an instance of ByteWord with given long.
+     *
+     * @param word string
+     * @return an instance of ByteWord
+     */
+    public static ByteWord create(long word) {
+        return new NumberByteWord(word);
+    }
+
+    /**
      * Create an instance of ByteWord with given byte array.
      *
-     * <p>throw IllegalArgumentException if the given array is null or empty.
+     * <p>throw IllegalArgumentException if the given array is null.
      *
      * @param word byte array
      * @return an instance of ByteWord
      */
     public static ByteWord create(byte[] word) {
-        if (word == null || word.length == 0) {
-            throw new IllegalArgumentException("empty word");
+        if (word == null) {
+            throw new IllegalArgumentException("world is null");
         }
         return new SingleByteWord(word);
     }
@@ -113,7 +124,7 @@ public abstract class ByteWord implements Comparable<ByteWord> {
      * Write data to output stream.
      *
      * @param output output
-     * @throws IOException
+     * @throws IOException if thrown by output
      */
     public abstract void write(OutputStream output) throws IOException;
 
@@ -218,6 +229,18 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         }
 
         @Override
+        public String toString() {
+            return "NumberByteWord{"
+                    + "value=" + value
+                    + '}';
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
+        }
+
+        @Override
         public void write(OutputStream output) throws IOException {
             output.write(bytes);
         }
@@ -227,8 +250,8 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         private final byte[] word;
 
         public SingleByteWord(byte[] word) {
-            if (word == null || word.length == 0) {
-                throw new IllegalArgumentException("given byte array is null or empty");
+            if (word == null) {
+                throw new IllegalArgumentException("given byte array is null");
             }
             this.word = word;
         }
@@ -261,8 +284,9 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         @Override
         public int hashCode() {
             int result = 1;
-            for (byte element : word)
+            for (byte element : word) {
                 result = 31 * result + element;
+            }
 
             return result;
         }
@@ -330,14 +354,15 @@ public abstract class ByteWord implements Comparable<ByteWord> {
 
         @Override
         public void write(OutputStream output) throws IOException {
-            for (byte[] array: word) {
+            for (byte[] array : word) {
                 output.write(array);
             }
         }
 
         /**
          * To make sure that SingleByteWord and MultiBytesWord generate same hash code if they have same byte sequence.
-         * <p> for example:
+         *
+         * <p>For example:
          * SingleByteWord: ['a','b']
          * MultiBytesWord: List.of(['a'],['b'])
          *
