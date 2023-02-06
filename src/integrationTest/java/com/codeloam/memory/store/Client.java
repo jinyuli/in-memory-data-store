@@ -1,12 +1,8 @@
 package com.codeloam.memory.store;
 
-import com.codeloam.memory.store.command.Command;
-import com.codeloam.memory.store.network.data.NetworkData;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -19,23 +15,26 @@ import java.util.List;
  * @since 1.0
  */
 public class Client {
+    private final String name;
     private final String host;
     private final int port;
 
-    public Client(String host, int port) {
+    public Client(String name, String host, int port) {
+        this.name = name;
         this.host = host;
         this.port = port;
     }
 
     public void sendCommands(List<String> commandList) throws IOException {
-
+        int count = 0;
         for (String command : commandList) {
+            System.out.printf("%s sends out %dth command\n", name, count++);
             try (Socket socket = new Socket(host, port);
-                 InputStream input = socket.getInputStream();
-                 OutputStream output = socket.getOutputStream()) {
+                InputStream input = socket.getInputStream();
+                OutputStream output = socket.getOutputStream()) {
                 output.write(command.getBytes(StandardCharsets.UTF_8));
                 String result = readResult(input);
-                System.out.printf("%s: %s\n", command, result);
+//                System.out.printf("%s\n", result);
             } catch (IOException e) {
                 e.printStackTrace();
                 throw e;

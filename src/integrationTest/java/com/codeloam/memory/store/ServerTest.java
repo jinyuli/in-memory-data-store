@@ -6,12 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test Server.
@@ -46,7 +43,7 @@ public class ServerTest {
         executorService.schedule(new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                Client client = new Client(host, port);
+                Client client = new Client("General", host, port);
                 client.sendCommands(commands);
                 System.out.println("commands are done, close server");
                 server.close();

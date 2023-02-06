@@ -1,4 +1,4 @@
-package com.codeloam;
+package com.codeloam.memory.store;
 
 import com.codeloam.memory.store.network.Server;
 import com.codeloam.memory.store.network.bio.BioServer;

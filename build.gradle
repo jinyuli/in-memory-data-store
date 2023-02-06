@@ -1,9 +1,11 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'application'
 }
 
-group 'com.codeloam'
+//name 'Jimds'
+group 'com.codeloam.memory.store'
 version '1.0-SNAPSHOT'
 
 sourceSets {
@@ -11,6 +13,21 @@ sourceSets {
         java
         compileClasspath += sourceSets.main.output
         runtimeClasspath += sourceSets.main.output
+    }
+}
+
+application {
+    mainClass = 'com.codeloam.memory.store.Main'
+}
+
+jar {
+    archiveBaseName = 'Jimds'
+    manifest {
+        attributes(
+                "Main-Class": "com.codeloam.memory.store.Main",
+                "Package": "com.codeloam.memory.store",
+                "Implementation-Version": "${project.version}"
+        )
     }
 }
 
