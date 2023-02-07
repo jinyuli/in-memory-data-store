@@ -6,12 +6,17 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Helper class to generate commands.
+ *
  * @author jinyu.li
  * @since 1.0
  */
 public class CommandHelper {
     private static final String END = "\r\n";
-    private static final byte[] TEST = "Lorem markdownum partu paterno Achillem. Habent amne generosi aderant ad pellemnec erat sustinet merces columque haec et, dixit minus nutrit accipiam subibissubdidit. Temeraria servatum agros qui sed fulva facta. Primum ultima, dedit, suo quisque linguae medentes fixo: tum petis.".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] TEST = ("Lorem markdownum partu paterno Achillem. Habent amne generosi "
+            + "aderant ad pellemnec erat sustinet merces columque haec et, dixit minus nutrit accipiam "
+            + "subibissubdidit. Temeraria servatum agros qui sed fulva facta. Primum ultima, dedit, suo "
+            + "quisque linguae medentes fixo: tum petis.").getBytes(StandardCharsets.UTF_8);
 
     /**
      * Generate string command, for set command, the value size is specified.
@@ -23,14 +28,20 @@ public class CommandHelper {
     public static List<String> generateStringCommands(int count, int size) {
         List<String> commands = new ArrayList<>();
         for (int i = 0; i < count; ++i) {
-            String set = String.format("SET key_%d", i);
+            String set = String.format("SET key_%d_%d", size, i);
             commands.add(formatCommand(set, getRandomBytes(size)));
-            String get = String.format("GET key_%d", i);
+            String get = String.format("GET key_%d_%d", size, i);
             commands.add(formatCommand(get, null));
         }
         return commands;
     }
 
+    /**
+     * Generate string command.
+     *
+     * @param count number of commands pair
+     * @return commands
+     */
     public static List<String> generateStringCommands(int count) {
         List<String> commands = new ArrayList<>();
         for (int i = 0; i < count; ++i) {
@@ -81,7 +92,7 @@ public class CommandHelper {
         byte[] bytes = new byte[byteCount];
         int offset = 0;
         while (offset < byteCount) {
-            int size = random.nextInt(TEST.length/2);
+            int size = random.nextInt(TEST.length / 2);
             if (offset + size > byteCount) {
                 size = byteCount - offset;
             }

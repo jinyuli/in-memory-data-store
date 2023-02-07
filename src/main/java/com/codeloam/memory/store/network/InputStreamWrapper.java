@@ -1,6 +1,7 @@
 package com.codeloam.memory.store.network;
 
 import com.codeloam.memory.store.command.InvalidCommandException;
+import com.codeloam.memory.store.log.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,7 @@ import java.util.List;
  * @since 1.0
  */
 public class InputStreamWrapper {
+    private static Logger logger = new Logger();
     private final InputStream inputStream;
     private final byte[] buf;
     private int offset;
@@ -127,7 +129,10 @@ public class InputStreamWrapper {
      */
     public void skipStopSign() throws IOException {
         // offset should point to '\r', or offset == count
-        skip(2);
+        // if need to read more data, the following operations will call readData().
+        // if call skip(2) at here, and current is at last two bytes, readData() may get stuck
+        // as client will not send more data.
+        offset += 2;
     }
 
     /**
@@ -139,6 +144,7 @@ public class InputStreamWrapper {
         while (offset >= count) {
             int last = count;
             count = inputStream.read(buf);
+//            logger.debug("read data, offset:%d, last count:%d, new count:%d, total:%d\n", offset, last, count, totalSize);
             offset -= last;
             if (count < 0) {
                 break;

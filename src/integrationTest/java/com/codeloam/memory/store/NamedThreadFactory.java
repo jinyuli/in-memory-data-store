@@ -4,6 +4,8 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * ThreadFactory with given name pattern.
+ *
  * @author jinyu.li
  * @since 1.0
  */

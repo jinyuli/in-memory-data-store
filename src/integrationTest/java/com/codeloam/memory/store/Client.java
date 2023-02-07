@@ -19,12 +19,25 @@ public class Client {
     private final String host;
     private final int port;
 
+    /**
+     * Constructor.
+     *
+     * @param name client name
+     * @param host server host
+     * @param port server port
+     */
     public Client(String name, String host, int port) {
         this.name = name;
         this.host = host;
         this.port = port;
     }
 
+    /**
+     * Send given commands to server.
+     *
+     * @param commandList commands
+     * @throws IOException throw by Socket
+     */
     public void sendCommands(List<String> commandList) throws IOException {
         int count = 0;
         for (String command : commandList) {
@@ -33,8 +46,7 @@ public class Client {
                 InputStream input = socket.getInputStream();
                 OutputStream output = socket.getOutputStream()) {
                 output.write(command.getBytes(StandardCharsets.UTF_8));
-                String result = readResult(input);
-//                System.out.printf("%s\n", result);
+                readResult(input);
             } catch (IOException e) {
                 e.printStackTrace();
                 throw e;

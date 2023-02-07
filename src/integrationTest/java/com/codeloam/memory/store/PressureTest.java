@@ -19,7 +19,7 @@ public class PressureTest {
     private static final int K = 1024;
     private static final int M = 1024 * K;
 
-    //    @Disabled("manual only")
+    @Disabled("manual only")
     @Test
     public void testStringCommand() {
         String host = "localhost";
@@ -30,7 +30,7 @@ public class PressureTest {
         ExecutorService executorService = Executors.newCachedThreadPool(new NamedThreadFactory("Pressure"));
 
         for (int byteSize : byteSizes) {
-            List<String> commands = CommandHelper.generateStringCommands(100, byteSize);
+            List<String> commands = CommandHelper.generateStringCommands(1000, byteSize);
             executorService.submit(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
@@ -44,14 +44,14 @@ public class PressureTest {
             });
         }
 
-//        int[] bigByteSize = new int[]{M, 2 * M, 5 * M, 10 * M, 50 * M};
+//        int[] bigByteSize = new int[]{M, 2 * M, 5 * M}; //, 10 * M, 50 * M};
 //
 //        for (int byteSize : bigByteSize) {
-//            List<String> commands = CommandHelper.generateStringCommands(5, byteSize);
+//            List<String> commands = CommandHelper.generateStringCommands(50, byteSize);
 //            executorService.submit(new Callable<Void>() {
 //                @Override
 //                public Void call() throws Exception {
-//                    Client client = new Client(host, port);
+//                    Client client = new Client(String.format("Client(%d)", byteSize), host, port);
 //                    client.sendCommands(commands);
 //                    System.out.printf("commands for big byte size(%dM) are done, close server\n", byteSize / M);
 //                    System.out.println("client thread finished");

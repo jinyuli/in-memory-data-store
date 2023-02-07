@@ -37,7 +37,8 @@ echo %JAVA_HOME_RUN%
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and IN_MEMORY_DATA_STORE_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=
+set DEFAULT_JVM_OPTS=-Xlog:gc*=info:file=gc.log
+@rem set DEFAULT_JVM_OPTS=-Xlog:gc+malloc+oopmap+safepoint+ref+region+reloc+logging=info:file=gc.log
 
 @rem Find java.exe
 if defined JAVA_HOME_RUN goto findJavaFromJavaHome
