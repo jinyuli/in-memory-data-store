@@ -24,7 +24,7 @@ public class ServerTest {
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
 
-        List<String> commands = CommandHelper.generateStringCommands(2);
+        List<List<byte[]>> commands = CommandHelper.generateStringCommands(2);
         Server server = new BioServer(host, port);
 
         executorService.submit(new Callable<Void>() {

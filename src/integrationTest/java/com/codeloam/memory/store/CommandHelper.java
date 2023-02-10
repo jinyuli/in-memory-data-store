@@ -25,11 +25,30 @@ public class CommandHelper {
      * @param size  value's bytes
      * @return commands
      */
-    public static List<String> generateStringCommands(int count, int size) {
-        List<String> commands = new ArrayList<>();
+    public static List<List<byte[]>> generateStringCommands(int count, int size) {
+        List<List<byte[]>> commands = new ArrayList<>();
         for (int i = 0; i < count; ++i) {
             String set = String.format("SET key_%d_%d", size, i);
             commands.add(formatCommand(set, getRandomBytes(size)));
+            String get = String.format("GET key_%d_%d", size, i);
+            commands.add(formatCommand(get, null));
+        }
+        return commands;
+    }
+
+    /**
+     * Generate string command, for set command, the value size is specified.
+     *
+     * @param count number of commands pair
+     * @param size  value's bytes
+     * @return commands
+     */
+    public static List<List<byte[]>> generateSharedStringCommands(int count, int size) {
+        List<List<byte[]>> commands = new ArrayList<>();
+        byte[] bytes = getRandomBytes(size);
+        for (int i = 0; i < count; ++i) {
+            String set = String.format("SET key_%d_%d", size, i);
+            commands.add(formatCommand(set, bytes));
             String get = String.format("GET key_%d_%d", size, i);
             commands.add(formatCommand(get, null));
         }
@@ -42,8 +61,8 @@ public class CommandHelper {
      * @param count number of commands pair
      * @return commands
      */
-    public static List<String> generateStringCommands(int count) {
-        List<String> commands = new ArrayList<>();
+    public static List<List<byte[]>> generateStringCommands(int count) {
+        List<List<byte[]>> commands = new ArrayList<>();
         for (int i = 0; i < count; ++i) {
             String set = String.format("SET key_%d value_%d", i, i);
             commands.add(formatCommand(set, null));
@@ -53,11 +72,11 @@ public class CommandHelper {
         return commands;
     }
 
-    private static String formatCommand(String command, byte[] more) {
+    private static List<byte[]> formatCommand(String command, byte[] more) {
         StringBuilder sb = new StringBuilder();
         if (command == null) {
             sb.append("");
-            return sb.toString();
+            return List.of(sb.toString().getBytes(StandardCharsets.UTF_8));
         }
 
         int extraWord = more == null ? 0 : 1;
@@ -65,26 +84,32 @@ public class CommandHelper {
         int totalLen = words.length + extraWord;
         if (totalLen == 0) {
             sb.append("*0").append(END);
-            return sb.toString();
+            return List.of(sb.toString().getBytes(StandardCharsets.UTF_8));
         }
         if (totalLen == 1) {
             if (extraWord > 0) {
-                sb.append("$").append(more.length).append(END).append(new String(more)).append(END);
-                return sb.toString();
+                sb.append("$").append(more.length).append(END);
+                return List.of(sb.toString().getBytes(StandardCharsets.UTF_8), more, END.getBytes(StandardCharsets.UTF_8));
             } else {
                 String w = words[0];
                 sb.append("$").append(w.length()).append(END).append(w).append(END);
-                return sb.toString();
+                return List.of(sb.toString().getBytes(StandardCharsets.UTF_8));
             }
         }
         sb.append("*").append(totalLen).append(END);
         for (String w : words) {
             sb.append("$").append(w.length()).append(END).append(w).append(END);
         }
+        List<byte[]> result = new ArrayList<>();
         if (extraWord > 0) {
-            sb.append("$").append(more.length).append(END).append(new String(more)).append(END);
+            sb.append("$").append(more.length).append(END);
+            result.add(sb.toString().getBytes(StandardCharsets.UTF_8));
+            result.add(more);
+            result.add(END.getBytes(StandardCharsets.UTF_8));
+        } else {
+            result.add(sb.toString().getBytes(StandardCharsets.UTF_8));
         }
-        return sb.toString();
+        return result;
     }
 
     private static byte[] getRandomBytes(int byteCount) {

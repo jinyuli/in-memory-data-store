@@ -37,7 +37,7 @@ echo %JAVA_HOME_RUN%
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and IN_MEMORY_DATA_STORE_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=-Xlog:gc*=info:file=gc.log
+set DEFAULT_JVM_OPTS=-Xlog:gc*=info:file=gc.log::filecount=5,filesize=4m -Xms1024m -Xmx1024m
 @rem set DEFAULT_JVM_OPTS=-Xlog:gc+malloc+oopmap+safepoint+ref+region+reloc+logging=info:file=gc.log
 
 @rem Find java.exe
@@ -77,7 +77,7 @@ goto fail
 set CLASSPATH=%APP_HOME%\build\libs\Jimds-1.0-SNAPSHOT.jar
 
 echo %JAVA_HOME%
-%JAVA_EXE% --version
+@rem %JAVA_EXE% -Xlog:help
 
 @rem Execute in-memory-data-store
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IN_MEMORY_DATA_STORE_OPTS%  -classpath "%CLASSPATH%" com.codeloam.memory.store.Main %*

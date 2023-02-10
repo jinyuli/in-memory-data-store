@@ -38,14 +38,16 @@ public class Client {
      * @param commandList commands
      * @throws IOException throw by Socket
      */
-    public void sendCommands(List<String> commandList) throws IOException {
+    public void sendCommands(List<List<byte[]>> commandList) throws IOException {
         int count = 0;
-        for (String command : commandList) {
+        for (List<byte[]> command : commandList) {
             System.out.printf("%s sends out %dth command\n", name, count++);
             try (Socket socket = new Socket(host, port);
                 InputStream input = socket.getInputStream();
                 OutputStream output = socket.getOutputStream()) {
-                output.write(command.getBytes(StandardCharsets.UTF_8));
+                for (byte[] bytes: command) {
+                    output.write(bytes);
+                }
                 readResult(input);
             } catch (IOException e) {
                 e.printStackTrace();

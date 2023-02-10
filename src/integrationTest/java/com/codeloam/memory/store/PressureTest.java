@@ -25,12 +25,11 @@ public class PressureTest {
         String host = "localhost";
         int port = 3128;
 
-        int[] byteSizes = new int[]{50, 100, 1024, 5 * K, 10 * K, 100 * K};
-
         ExecutorService executorService = Executors.newCachedThreadPool(new NamedThreadFactory("Pressure"));
 
+        int[] byteSizes = new int[]{50, 100, 1024, 5 * K, 10 * K, 100 * K};
         for (int byteSize : byteSizes) {
-            List<String> commands = CommandHelper.generateStringCommands(1000, byteSize);
+            List<List<byte[]>> commands = CommandHelper.generateStringCommands(1000, byteSize);
             executorService.submit(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
@@ -44,21 +43,35 @@ public class PressureTest {
             });
         }
 
-//        int[] bigByteSize = new int[]{M, 2 * M, 5 * M}; //, 10 * M, 50 * M};
-//
-//        for (int byteSize : bigByteSize) {
-//            List<String> commands = CommandHelper.generateStringCommands(50, byteSize);
-//            executorService.submit(new Callable<Void>() {
-//                @Override
-//                public Void call() throws Exception {
-//                    Client client = new Client(String.format("Client(%d)", byteSize), host, port);
-//                    client.sendCommands(commands);
-//                    System.out.printf("commands for big byte size(%dM) are done, close server\n", byteSize / M);
-//                    System.out.println("client thread finished");
-//                    return null;
-//                }
-//            });
-//        }
+        int[] bigByteSize = new int[]{M, 2 * M, 5 * M};
+        for (int byteSize : bigByteSize) {
+            List<List<byte[]>> commands = CommandHelper.generateStringCommands(10, byteSize);
+            executorService.submit(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    Client client = new Client(String.format("Client(%d)", byteSize), host, port);
+                    client.sendCommands(commands);
+                    System.out.printf("commands for big byte size(%dM) are done, close server\n", byteSize / M);
+                    System.out.println("client thread finished");
+                    return null;
+                }
+            });
+        }
+
+        int[] shareByteSize = new int[]{5 * M, 10 * M, 50 * M};
+        for (int byteSize : shareByteSize) {
+            List<List<byte[]>> commands = CommandHelper.generateSharedStringCommands(5, byteSize);
+            executorService.submit(new Callable<Void>() {
+                @Override
+                public Void call() throws Exception {
+                    Client client = new Client(String.format("Client(%d)", byteSize), host, port);
+                    client.sendCommands(commands);
+                    System.out.printf("commands for big byte size(%dM) are done, close server\n", byteSize / M);
+                    System.out.println("client thread finished");
+                    return null;
+                }
+            });
+        }
 
         try {
             int time = 40;
