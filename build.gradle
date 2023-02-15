@@ -59,14 +59,14 @@ tasks.register('integrationTest', Test) {
 
 check.dependsOn integrationTest
 
-repositories {
-    mavenCentral()
-}
+//repositories {
+//    mavenCentral()
+//}
 
-configurations {
-    intTestImplementation.extendsFrom implementation
-    intTestRuntimeOnly.extendsFrom runtimeOnly
-}
+//configurations {
+//    intTestImplementation.extendsFrom implementation
+//    intTestRuntimeOnly.extendsFrom runtimeOnly
+//}
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
@@ -76,6 +76,7 @@ dependencies {
     integrationTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     integrationTestImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
     integrationTestImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    integrationTestImplementation group: 'org.openjdk.jol', name: 'jol-core', version: '0.16'
 }
 
 test {

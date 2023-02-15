@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Factory to create command.
@@ -127,7 +128,11 @@ public class CommandFactory {
             }
         }
 
-        return new SimpleCommand(commandConfig.name(), commandConfig.dataType(), key, values,
+        if (values != null) {
+            values = values.stream().map(ByteWord::compact).collect(Collectors.toList());
+        }
+
+        return new SimpleCommand(commandConfig.name(), commandConfig.dataType(), key == null ? null : key.compact(), values,
                 optionMap.isEmpty() ? null : optionMap);
     }
 

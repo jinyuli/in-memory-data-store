@@ -9,6 +9,7 @@ package com.codeloam.memory.store.database;
  * @since 1.0
  */
 public abstract class JimdsHash<K extends Comparable<K>, T> extends JimdsData {
+    @Override
     public DataType getDataType() {
         return DataType.Hash;
     }

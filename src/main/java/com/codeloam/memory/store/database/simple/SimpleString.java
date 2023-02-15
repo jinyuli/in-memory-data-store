@@ -21,6 +21,7 @@ public class SimpleString extends JimdsString {
         if (byteWord == null) {
             throw new NullPointerException("null string");
         }
+        Integer i;
         this.byteWord = byteWord;
     }
 

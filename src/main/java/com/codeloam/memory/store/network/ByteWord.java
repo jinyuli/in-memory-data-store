@@ -129,6 +129,16 @@ public abstract class ByteWord implements Comparable<ByteWord> {
     public abstract void write(OutputStream output) throws IOException;
 
     /**
+     * Used to compact data as much as possible.
+     * Generally called before save to database.
+     *
+     * @return a compacted data
+     */
+    public ByteWord compact() {
+        return this;
+    }
+
+    /**
      * Whether two ByteWord are the same.
      * Note that hashCode must be rewritten.
      *
@@ -357,6 +367,17 @@ public abstract class ByteWord implements Comparable<ByteWord> {
             for (byte[] array : word) {
                 output.write(array);
             }
+        }
+
+        @Override
+        public ByteWord compact() {
+            byte[] bytes = new byte[size()];
+            int index = 0;
+            for (byte[] b: word) {
+                System.arraycopy(b, 0, bytes, index, b.length);
+                index += b.length;
+            }
+            return new SingleByteWord(bytes);
         }
 
         /**
