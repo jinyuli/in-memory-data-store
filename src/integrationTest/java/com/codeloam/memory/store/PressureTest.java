@@ -1,8 +1,5 @@
 package com.codeloam.memory.store;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
@@ -19,9 +16,15 @@ public class PressureTest {
     private static final int K = 1024;
     private static final int M = 1024 * K;
 
-    @Disabled("manual only")
-    @Test
+    public static void main(String[] args) {
+        PressureTest test = new PressureTest();
+        test.testStringCommand();
+    }
+
+//    @Disabled("manual only")
+//    @Test
     public void testStringCommand() {
+//        Thread.sleep(10000000);
         String host = "localhost";
         int port = 3128;
 
@@ -29,7 +32,7 @@ public class PressureTest {
 
         int[] byteSizes = new int[]{50, 100, 1024, 5 * K, 10 * K, 100 * K};
         for (int byteSize : byteSizes) {
-            List<List<byte[]>> commands = CommandHelper.generateStringCommands(1000, byteSize);
+            List<List<byte[]>> commands = CommandHelper.generateStringCommands(100, byteSize);
             executorService.submit(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
@@ -45,7 +48,7 @@ public class PressureTest {
 
         int[] bigByteSize = new int[]{M, 2 * M, 5 * M};
         for (int byteSize : bigByteSize) {
-            List<List<byte[]>> commands = CommandHelper.generateStringCommands(10, byteSize);
+            List<List<byte[]>> commands = CommandHelper.generateStringCommands(50, byteSize);
             executorService.submit(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {

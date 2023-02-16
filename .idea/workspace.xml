@@ -5,17 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/MemoryLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsSortedSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/GCLogAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/MeasureCollector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/MeasureData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/PressureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/PressureTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +38,29 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="in-memory-data-store" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="in-memory-data-store" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="in-memory-data-store" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="in-memory-data-store" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -78,7 +100,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Projects/gradle&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
@@ -92,11 +114,10 @@
       <recent name="com.codeloam.memory.store.network.data" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MemoryLayout">
-    <configuration name="MemoryLayout" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.codeloam.memory.store.MemoryLayout" />
+  <component name="RunManager" selected="Gradle.in-memory-data-store [integrationJar]">
+    <configuration name="PressureTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.codeloam.memory.store.PressureTest" />
       <module name="in-memory-data-store.integrationTest" />
-      <option name="VM_PARAMETERS" value="-XX:+UseCompressedOops" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.codeloam.memory.store.*" />
@@ -123,7 +144,7 @@
             <option value="&quot;com.codeloam.memory.store.PressureTest&quot;" />
           </list>
         </option>
-        <option name="vmOptions" />
+        <option name="vmOptions" value="-Xmx1024m" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
@@ -146,7 +167,7 @@
             <option value="&quot;com.codeloam.memory.store.PressureTest.testStringCommand&quot;" />
           </list>
         </option>
-        <option name="vmOptions" value="-Xmx4096m" />
+        <option name="vmOptions" value="-Xmx1024m" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
@@ -174,7 +195,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="in-memory-data-store [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="in-memory-data-store [integrationJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -185,7 +206,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value="integrationJar" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -196,19 +217,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.MemoryLayout" />
+      <item itemvalue="Application.PressureTest" />
+      <item itemvalue="Gradle.in-memory-data-store [integrationJar]" />
       <item itemvalue="Gradle.PressureTest" />
       <item itemvalue="Gradle.in-memory-data-store [build]" />
-      <item itemvalue="Gradle.in-memory-data-store [clean]" />
       <item itemvalue="Gradle.PressureTest.testStringCommand" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MemoryLayout" />
-        <item itemvalue="Gradle.PressureTest" />
-        <item itemvalue="Gradle.PressureTest.testStringCommand" />
+        <item itemvalue="Gradle.in-memory-data-store [integrationJar]" />
+        <item itemvalue="Application.PressureTest" />
         <item itemvalue="Gradle.in-memory-data-store [build]" />
-        <item itemvalue="Gradle.in-memory-data-store [clean]" />
+        <item itemvalue="Gradle.PressureTest.testStringCommand" />
+        <item itemvalue="Gradle.PressureTest" />
       </list>
     </recent_temporary>
   </component>
@@ -218,12 +239,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/Client.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/Client.java</url>
-          <line>63</line>
+          <line>116</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>

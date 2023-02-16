@@ -37,7 +37,7 @@ echo %JAVA_HOME_RUN%
 for %%i in ("%APP_HOME%") do set APP_HOME=%%~fi
 
 @rem Add default JVM options here. You can also use JAVA_OPTS and IN_MEMORY_DATA_STORE_OPTS to pass JVM options to this script.
-set DEFAULT_JVM_OPTS=-Xlog:gc*=info:file=gc.log::filecount=5,filesize=4m -Xms2048m -Xmx2048m -XX:G1HeapRegionSize=4m
+set DEFAULT_JVM_OPTS=-Xms2048m -Xmx2048m -XX:G1HeapRegionSize=4m
 @rem set DEFAULT_JVM_OPTS=-Xlog:gc+malloc+oopmap+safepoint+ref+region+reloc+logging=info:file=gc.log -XX:G1HeapRegionSize=4m
 
 @rem Find java.exe
@@ -74,13 +74,13 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\build\libs\Jimds-1.0.0.jar
+set CLASSPATH=%APP_HOME%\build\libs\Integration-1.0.0.jar
 
 echo %JAVA_HOME%
 @rem %JAVA_EXE% -Xlog:help
 
 @rem Execute in-memory-data-store
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IN_MEMORY_DATA_STORE_OPTS%  -classpath "%CLASSPATH%" com.codeloam.memory.store.Main %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IN_MEMORY_DATA_STORE_OPTS%  -classpath "%CLASSPATH%" com.codeloam.memory.store.PressureTest %*
 
 :end
 @rem End local scope for the variables with windows NT shell

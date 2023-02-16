@@ -6,7 +6,7 @@ plugins {
 
 //name 'Jimds'
 group 'com.codeloam.memory.store'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -59,14 +59,18 @@ tasks.register('integrationTest', Test) {
 
 check.dependsOn integrationTest
 
-//repositories {
-//    mavenCentral()
-//}
-
-//configurations {
-//    intTestImplementation.extendsFrom implementation
-//    intTestRuntimeOnly.extendsFrom runtimeOnly
-//}
+tasks.register("integrationJar", Jar) {
+    archiveBaseName = 'Integration'
+    manifest {
+        attributes(
+                "Main-Class": "com.codeloam.memory.store.PressureTest",
+                "Package": "com.codeloam.memory.store",
+                "Implementation-Version": "${project.version}"
+        )
+    }
+    from(sourceSets.main.output)
+    from(sourceSets.integrationTest.output)
+}
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
@@ -77,6 +81,9 @@ dependencies {
     integrationTestImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
     integrationTestImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     integrationTestImplementation group: 'org.openjdk.jol', name: 'jol-core', version: '0.16'
+    integrationTestImplementation group: 'com.microsoft.gctoolkit', name: 'gctoolkit-api', version: '3.0.0'
+    integrationTestImplementation group: 'com.microsoft.gctoolkit', name: 'gctoolkit-vertx', version: '3.0.0'
+    integrationTestImplementation group: 'com.microsoft.gctoolkit', name: 'gctoolkit-parser', version: '3.0.0'
 }
 
 test {
