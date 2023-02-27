@@ -1,9 +1,9 @@
 package com.codeloam.memory.store.network;
 
 import com.codeloam.memory.store.command.InvalidCommandException;
+import com.codeloam.memory.store.network.data.DataReader;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,20 +14,16 @@ import java.util.List;
  * @since 1.0
  */
 public class ClientCommandReader implements CommandReader {
-    private static final int DEFAULT_BUF_SIZE = 32;
     private static final byte BYTE_WHITESPACE = ' ';
     private static final byte BYTE_DOUBLE_QUOTE = '"';
     private static final byte BYTE_SINGLE_QUOTE = '\'';
     private static final byte BYTE_BACKSLASH = '\\';
 
-    private static final int MAX_COMMAND_LENGTH = 512 * 1024 * 1024 + 1024 * 1024;
-    private final int bufSize;
 
     /**
      * Init.
      */
     public ClientCommandReader() {
-        bufSize = DEFAULT_BUF_SIZE;
     }
 
     /**
@@ -35,22 +31,21 @@ public class ClientCommandReader implements CommandReader {
      * This method will not close the input stream.
      * Use whitespace(' ') to split commands, and support quotes.
      *
-     * @param stream stream to read bytes from
+     * @param reader read bytes from
      * @return split commands
      * @throws IOException if throw by input stream
      */
-    public List<ByteWord> read(InputStream stream) throws IOException {
-        InputStreamWrapper inputWrapper = new InputStreamWrapper(stream, bufSize, MAX_COMMAND_LENGTH);
-        Byte prefix = inputWrapper.peekOneByte();
+    public List<ByteWord> read(DataReader reader) throws IOException {
+        Byte prefix = reader.peek();
         if (prefix == null) {
             throw new InvalidCommandException("no command");
         }
         switch (prefix) {
             case '$', '-', '+', '*', ':' -> {
-                return readResp(inputWrapper, prefix);
+                return readResp(reader, prefix);
             }
             default -> {
-                List<byte[]> bufList = inputWrapper.readUntilStop();
+                List<byte[]> bufList = reader.readUntilStop();
                 return splitCommand(bufList);
             }
         }
@@ -60,11 +55,11 @@ public class ClientCommandReader implements CommandReader {
      * Read RESP format.
      *
      * @param inputWrapper input
-     * @param prefix the first byte
+     * @param prefix       the first byte
      * @return a list
      * @throws IOException if thrown by input
      */
-    private List<ByteWord> readResp(InputStreamWrapper inputWrapper, byte prefix) throws IOException {
+    private List<ByteWord> readResp(DataReader inputWrapper, byte prefix) throws IOException {
         // skip the first byte
         inputWrapper.skip(1);
         switch (prefix) {
@@ -94,7 +89,7 @@ public class ClientCommandReader implements CommandReader {
      * @return a list
      * @throws IOException if thrown by input
      */
-    private List<ByteWord> readArray(InputStreamWrapper input) throws IOException {
+    private List<ByteWord> readArray(DataReader input) throws IOException {
         List<byte[]> bufList = input.readUntilStop();
 
         ByteWord lengthWord = ByteWord.create(bufList);
@@ -108,15 +103,15 @@ public class ClientCommandReader implements CommandReader {
             return List.of();
         }
 
-        input.skipStopSign();
+        input.skip(2);
 
         List<ByteWord> result = new ArrayList<>();
         while (size > 0) {
-            Byte prefix = input.peekOneByte();
+            Byte prefix = input.peek();
             switch (prefix) {
                 case '$', '-', '+', '*', ':' -> {
                     result.addAll(readResp(input, prefix));
-                    input.skipStopSign();
+                    input.skip(2);
                 }
                 default -> throw new InvalidCommandException("invalid resp format: " + prefix);
             }
@@ -136,9 +131,9 @@ public class ClientCommandReader implements CommandReader {
      * @return a list
      * @throws IOException if thrown by input
      */
-    private List<ByteWord> readBulkString(InputStreamWrapper input) throws IOException {
+    private List<ByteWord> readBulkString(DataReader input) throws IOException {
         List<byte[]> bufList = input.readUntilStop();
-        input.skipStopSign();
+        input.skip(2);
 
         ByteWord lengthWord = ByteWord.create(bufList);
         int size = Integer.parseInt(lengthWord.getString());
@@ -151,8 +146,8 @@ public class ClientCommandReader implements CommandReader {
             return List.of();
         }
 
-        bufList = input.read(size);
-        return List.of(ByteWord.create(bufList));
+        byte[] buf = input.read(size);
+        return List.of(ByteWord.create(buf));
     }
 
     /**
@@ -162,7 +157,7 @@ public class ClientCommandReader implements CommandReader {
      * @return a list
      * @throws IOException if thrown by input
      */
-    private List<ByteWord> readSimpleString(InputStreamWrapper input) throws IOException {
+    private List<ByteWord> readSimpleString(DataReader input) throws IOException {
         List<byte[]> bufList = input.readUntilStop();
         return List.of(ByteWord.create(bufList));
     }

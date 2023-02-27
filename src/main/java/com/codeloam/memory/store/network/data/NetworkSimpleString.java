@@ -3,7 +3,7 @@ package com.codeloam.memory.store.network.data;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -14,6 +14,7 @@ import java.util.Objects;
  */
 public class NetworkSimpleString extends NetworkData {
     public static final NetworkData OK = new NetworkSimpleString(ByteWord.create("OK"));
+    public static final byte[] PREFIX = "+".getBytes(StandardCharsets.UTF_8);
 
     private final ByteWord data;
 
@@ -27,10 +28,10 @@ public class NetworkSimpleString extends NetworkData {
     }
 
     @Override
-    public void write(OutputStream output) throws IOException {
-        output.write('+');
-        write(output, data);
-        output.write(END);
+    public void write(DataWriter writer) throws IOException {
+        writer.write(PREFIX);
+        write(writer, data);
+        writer.write(END);
     }
 
     @Override

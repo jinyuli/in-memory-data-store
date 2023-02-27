@@ -30,7 +30,7 @@ public class NetworkErrorTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             byte[] expectedBytes = string.getBytes(StandardCharsets.UTF_8);
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             byte[] result = outputStream.toByteArray();
             int index = 0;
             assertEquals('-', result[index++], "prefix -");
@@ -59,7 +59,7 @@ public class NetworkErrorTest {
             fail("Should not throw exception");
         }
         try {
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             fail("Should throw exception");
         } catch (IOException e) {
             // pass

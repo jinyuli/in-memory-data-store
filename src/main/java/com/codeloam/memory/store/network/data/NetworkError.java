@@ -3,7 +3,7 @@ package com.codeloam.memory.store.network.data;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 /**
@@ -13,6 +13,7 @@ import java.util.Objects;
  * @since 1.0
  */
 public class NetworkError extends NetworkData {
+    public static final byte[] PREFIX = "-".getBytes(StandardCharsets.UTF_8);
     private final ByteWord error;
 
     public NetworkError(String msg) {
@@ -29,10 +30,10 @@ public class NetworkError extends NetworkData {
     }
 
     @Override
-    public void write(OutputStream output) throws IOException {
-        output.write('-');
-        write(output, error);
-        output.write(END);
+    public void write(DataWriter writer) throws IOException {
+        writer.write(PREFIX);
+        write(writer, error);
+        writer.write(END);
     }
 
     @Override

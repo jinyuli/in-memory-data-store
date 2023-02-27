@@ -1,7 +1,8 @@
 package com.codeloam.memory.store.network;
 
+import com.codeloam.memory.store.network.data.DataReader;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -17,9 +18,9 @@ public interface CommandReader {
      * Read command from given input stream.
      * This method will not close the input stream.
      *
-     * @param stream stream to read bytes from
+     * @param reader read bytes from
      * @return split commands
      * @throws IOException if throw by input stream
      */
-    List<ByteWord> read(InputStream stream) throws IOException;
+    List<ByteWord> read(DataReader reader) throws IOException;
 }

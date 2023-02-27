@@ -29,7 +29,7 @@ public class NetworkSimpleStringTest {
         NetworkSimpleString data = new NetworkSimpleString(ByteWord.create(string));
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             byte[] result = outputStream.toByteArray();
             int index = 0;
             assertEquals('+', result[index++], "+");
@@ -57,7 +57,7 @@ public class NetworkSimpleStringTest {
             fail("Should not throw exception");
         }
         try {
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             fail("Should throw exception");
         } catch (IOException e) {
             // pass

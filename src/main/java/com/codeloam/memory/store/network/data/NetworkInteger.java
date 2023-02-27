@@ -1,7 +1,6 @@
 package com.codeloam.memory.store.network.data;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -12,6 +11,7 @@ import java.util.Objects;
  * @since 1.0
  */
 public class NetworkInteger extends NetworkData {
+    public static final byte[] PREFIX = ":".getBytes(StandardCharsets.UTF_8);
     private final long value;
 
     public NetworkInteger(long value) {
@@ -24,10 +24,10 @@ public class NetworkInteger extends NetworkData {
     }
 
     @Override
-    public void write(OutputStream output) throws IOException {
-        output.write(':');
-        output.write(String.valueOf(value).getBytes(StandardCharsets.UTF_8));
-        output.write(END);
+    public void write(DataWriter writer) throws IOException {
+        writer.write(PREFIX);
+        writer.write(String.valueOf(value).getBytes(StandardCharsets.UTF_8));
+        writer.write(END);
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.codeloam.memory.store.network.data;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
@@ -18,6 +17,7 @@ public class NetworkBulkString extends NetworkData {
 
     private static final byte[] NULL_BYTES = "$-1\r\n".getBytes(StandardCharsets.UTF_8);
     private static final byte[] EMPTY_BYTES = "$0\r\n\r\n".getBytes(StandardCharsets.UTF_8);
+    public static final byte[] PREFIX = "$".getBytes(StandardCharsets.UTF_8);
     private final ByteWord data;
 
     public NetworkBulkString(ByteWord data) {
@@ -30,20 +30,20 @@ public class NetworkBulkString extends NetworkData {
     }
 
     @Override
-    public void write(OutputStream output) throws IOException {
+    public void write(DataWriter writer) throws IOException {
         if (data == null) {
-            output.write(NULL_BYTES);
+            writer.write(NULL_BYTES);
             return;
         }
         if (data.size() == 0) {
-            output.write(EMPTY_BYTES);
+            writer.write(EMPTY_BYTES);
             return;
         }
-        output.write('$');
-        write(output, data.size());
-        output.write(END);
-        write(output, data);
-        output.write(END);
+        writer.write(PREFIX);
+        write(writer, data.size());
+        writer.write(END);
+        write(writer, data);
+        writer.write(END);
     }
 
     @Override

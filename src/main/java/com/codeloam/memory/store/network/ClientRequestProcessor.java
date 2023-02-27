@@ -20,31 +20,15 @@ import java.util.List;
  * @since 1.0
  */
 public class ClientRequestProcessor implements RequestProcessor {
-    private final CommandReader commandReader;
 
-    public ClientRequestProcessor(CommandReader commandReader) {
-        this.commandReader = commandReader;
+    public ClientRequestProcessor() {
     }
 
     @Override
-    public void process(Database database, InputStream inputStream, OutputStream outputStream) throws IOException {
-        try {
-            List<ByteWord> words = commandReader.read(inputStream);
-            Command command = CommandFactory.parseCommand(words);
-            if (command == null) {
-                throw new InvalidCommandException("Unknown command");
-            }
-            NetworkData result = database.execute(command);
-            writeResult(outputStream, result);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (JimdsException e) {
-            // internal exception, write to output
-            writeResult(outputStream, new NetworkError(e.getMessage()));
+    public NetworkData process(Database database, Command command) throws IOException {
+        if (command == null) {
+            throw new InvalidCommandException("Unknown command");
         }
-    }
-
-    private void writeResult(OutputStream outputStream, NetworkData data) throws IOException {
-        data.write(outputStream);
+        return database.execute(command);
     }
 }

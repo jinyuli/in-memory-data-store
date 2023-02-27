@@ -132,7 +132,9 @@ public class CommandFactory {
             values = values.stream().map(ByteWord::compact).collect(Collectors.toList());
         }
 
-        return new SimpleCommand(commandConfig.name(), commandConfig.dataType(), key == null ? null : key.compact(), values,
+        return new SimpleCommand(commandConfig.name(),
+                commandConfig.dataType(), key == null ? null : key.compact(),
+                values,
                 optionMap.isEmpty() ? null : optionMap);
     }
 

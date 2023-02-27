@@ -1,6 +1,8 @@
 package com.codeloam.memory.store.network;
 
+import com.codeloam.memory.store.command.Command;
 import com.codeloam.memory.store.database.Database;
+import com.codeloam.memory.store.network.data.NetworkData;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,9 +21,9 @@ public interface RequestProcessor {
      * Process requests.
      *
      * @param database current database
-     * @param inputStream input stream
-     * @param outputStream output stream
+     * @param command command
+     * @return command result
      * @throws IOException only throws when writing data to output
      */
-    void process(Database database, InputStream inputStream, OutputStream outputStream) throws IOException;
+    NetworkData process(Database database, Command command) throws IOException;
 }

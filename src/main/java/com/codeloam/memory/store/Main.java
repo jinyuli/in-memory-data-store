@@ -2,6 +2,7 @@ package com.codeloam.memory.store;
 
 import com.codeloam.memory.store.network.Server;
 import com.codeloam.memory.store.network.bio.BioServer;
+import com.codeloam.memory.store.network.nio.NioServer;
 
 /**
  * Main.

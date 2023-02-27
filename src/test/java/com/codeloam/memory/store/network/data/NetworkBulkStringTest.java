@@ -31,7 +31,7 @@ public class NetworkBulkStringTest {
         try {
             byte[] expectedBytes = string.getBytes(StandardCharsets.UTF_8);
             byte[] expectedLenBytes = String.valueOf(expectedBytes.length).getBytes(StandardCharsets.UTF_8);
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             byte[] result = outputStream.toByteArray();
             int index = 0;
             assertEquals('$', result[index++], "$");
@@ -59,7 +59,7 @@ public class NetworkBulkStringTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             byte[] expectedBytes = "$-1\r\n".getBytes(StandardCharsets.UTF_8);
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             byte[] result = outputStream.toByteArray();
 
             assertEquals(expectedBytes.length, result.length);
@@ -83,7 +83,7 @@ public class NetworkBulkStringTest {
             fail("Should not throw exception");
         }
         try {
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             fail("Should throw exception");
         } catch (IOException e) {
             // pass

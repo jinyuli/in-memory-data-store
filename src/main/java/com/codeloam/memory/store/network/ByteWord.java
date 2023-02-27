@@ -1,7 +1,8 @@
 package com.codeloam.memory.store.network;
 
+import com.codeloam.memory.store.network.data.DataWriter;
+
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
@@ -123,10 +124,10 @@ public abstract class ByteWord implements Comparable<ByteWord> {
     /**
      * Write data to output stream.
      *
-     * @param output output
+     * @param writer writer
      * @throws IOException if thrown by output
      */
-    public abstract void write(OutputStream output) throws IOException;
+    public abstract void write(DataWriter writer) throws IOException;
 
     /**
      * Used to compact data as much as possible.
@@ -251,8 +252,8 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         }
 
         @Override
-        public void write(OutputStream output) throws IOException {
-            output.write(bytes);
+        public void write(DataWriter writer) throws IOException {
+            writer.write(bytes);
         }
     }
 
@@ -287,8 +288,8 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         }
 
         @Override
-        public void write(OutputStream output) throws IOException {
-            output.write(word);
+        public void write(DataWriter writer) throws IOException {
+            writer.write(word);
         }
 
         @Override
@@ -363,9 +364,9 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         }
 
         @Override
-        public void write(OutputStream output) throws IOException {
+        public void write(DataWriter writer) throws IOException {
             for (byte[] array : word) {
-                output.write(array);
+                writer.write(array);
             }
         }
 
@@ -373,7 +374,7 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         public ByteWord compact() {
             byte[] bytes = new byte[size()];
             int index = 0;
-            for (byte[] b: word) {
+            for (byte[] b : word) {
                 System.arraycopy(b, 0, bytes, index, b.length);
                 index += b.length;
             }
@@ -439,7 +440,7 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         }
 
         @Override
-        public void write(OutputStream output) throws IOException {
+        public void write(DataWriter writer) throws IOException {
         }
 
         @Override

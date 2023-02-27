@@ -9,7 +9,7 @@ import org.openjdk.jol.vm.VM;
 import java.util.List;
 
 /**
- * Show memory layout
+ * Show memory layout.
  *
  * @author jinyu.li
  * @since 1.0

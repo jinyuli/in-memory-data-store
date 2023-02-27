@@ -12,7 +12,7 @@ import java.nio.file.Path;
  */
 public class GCLogAnalyzer {
     public static void main(String[] args) throws IOException {
-        var path = Path.of("D:\\Projects\\book_projects\\in-memory-data-store\\gc_big.log");
+        var path = Path.of(args[1]);
         var logFile = new SingleGCLogFile(path);
         var gcToolKit = new GCToolKit();
         var jvm = gcToolKit.analyze(logFile);

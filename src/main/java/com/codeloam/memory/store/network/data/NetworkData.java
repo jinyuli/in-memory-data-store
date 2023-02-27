@@ -3,7 +3,6 @@ package com.codeloam.memory.store.network.data;
 import com.codeloam.memory.store.network.ByteWord;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -25,29 +24,29 @@ public abstract class NetworkData {
     /**
      * Write current result to output stream.
      *
-     * @param output output
+     * @param writer writer
      */
-    public abstract void write(OutputStream output) throws IOException;
+    public abstract void write(DataWriter writer) throws IOException;
 
     /**
      * Convenient method for subclass to write a number to output.
      *
-     * @param output output
+     * @param writer writer
      * @param value value
      * @throws IOException if thrown by output
      */
-    protected void write(OutputStream output, long value) throws IOException {
-        output.write(String.valueOf(value).getBytes(StandardCharsets.UTF_8));
+    protected void write(DataWriter writer, long value) throws IOException {
+        writer.write(String.valueOf(value).getBytes(StandardCharsets.UTF_8));
     }
 
     /**
      * Convenient method for subclass to write a ByteWord to output.
      *
-     * @param output output
+     * @param writer writer
      * @param word word
      * @throws IOException if thrown by output
      */
-    protected void write(OutputStream output, ByteWord word) throws IOException {
-        word.write(output);
+    protected void write(DataWriter writer, ByteWord word) throws IOException {
+        word.write(writer);
     }
 }

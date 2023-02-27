@@ -23,7 +23,7 @@ import com.codeloam.memory.store.network.data.NetworkSimpleString;
  * @since 1.0
  */
 public class SimpleDatabase implements Database {
-    private final JimdsHash<ByteWord, JimdsObject> database;
+    private final JimdsHash<ByteWord, JimdsData> database;
 
     public SimpleDatabase() {
         database = new SimpleHash<>();
@@ -57,31 +57,28 @@ public class SimpleDatabase implements Database {
     private NetworkData executeStringCommand(Command command) {
         switch (command.getName()) {
             case "GET" -> {
-                JimdsObject object = database.get(command.getKey());
+                JimdsData object = database.get(command.getKey());
                 if (object == null) {
                     return NetworkBulkString.NULL;
                 }
-                JimdsData data = object.getValue();
-                if (data.getDataType() != DataType.String) {
+                if (object.getDataType() != DataType.String) {
                     return new NetworkError("Wrong value type");
                 }
-                return new NetworkBulkString(((JimdsString) data).get());
+                return new NetworkBulkString(((JimdsString) object).get());
             }
             case "SET" -> {
-                JimdsObject object = database.get(command.getKey());
+                JimdsData object = database.get(command.getKey());
                 if (object == null) {
-                    object = new JimdsObject();
-                    object.setValue(new SimpleString(command.getValues().get(0)));
+                    object = new SimpleString(command.getValues().get(0));
                     database.set(command.getKey(), object);
                     return NetworkSimpleString.OK;
                 } else {
-                    JimdsData data = object.getValue();
-                    if (data.getDataType() != DataType.String) {
+                    if (object.getDataType() != DataType.String) {
                         return new NetworkError("Wrong value type");
                     }
 
-                    ByteWord oldValue = ((JimdsString) data).get();
-                    object.setValue(new SimpleString(command.getValues().get(0)));
+                    ByteWord oldValue = ((JimdsString) object).get();
+                    database.set(command.getKey(), new SimpleString(command.getValues().get(0)));
                     return new NetworkBulkString(oldValue);
                 }
             }

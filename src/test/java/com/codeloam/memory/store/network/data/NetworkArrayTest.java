@@ -42,7 +42,7 @@ public class NetworkArrayTest {
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
 
             byte[] result = outputStream.toByteArray();
             int index = 0;
@@ -105,7 +105,7 @@ public class NetworkArrayTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             byte[] expectedBytes = "*-1\r\n".getBytes(StandardCharsets.UTF_8);
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             byte[] result = outputStream.toByteArray();
 
             assertEquals(expectedBytes.length, result.length);
@@ -130,7 +130,7 @@ public class NetworkArrayTest {
             fail("Should not throw exception");
         }
         try {
-            data.write(outputStream);
+            data.write(new StreamDataWriter(outputStream));
             fail("Should throw exception");
         } catch (IOException e) {
             // pass

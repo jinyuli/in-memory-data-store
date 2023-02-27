@@ -1,4 +1,4 @@
-package com.codeloam.memory.store.network;
+package com.codeloam.memory.store.network.data;
 
 import com.codeloam.memory.store.command.InvalidCommandException;
 import com.codeloam.memory.store.log.Logger;
@@ -14,8 +14,8 @@ import java.util.List;
  * @author jinyu.li
  * @since 1.0
  */
-public class InputStreamWrapper {
-    private static Logger logger = new Logger();
+public class StreamDataReader implements DataReader {
+    private static final Logger logger = new Logger();
     private final InputStream inputStream;
     private final byte[] buf;
     private int offset;
@@ -27,10 +27,10 @@ public class InputStreamWrapper {
      * Constructor.
      *
      * @param inputStream input
-     * @param bufSize buffer size
+     * @param bufSize     buffer size
      * @param maxReadSize maximum bytes to read from input stream
      */
-    public InputStreamWrapper(InputStream inputStream, int bufSize, int maxReadSize) {
+    public StreamDataReader(InputStream inputStream, int bufSize, int maxReadSize) {
         buf = new byte[bufSize];
         this.inputStream = inputStream;
         this.maxReadSize = maxReadSize;
@@ -42,7 +42,7 @@ public class InputStreamWrapper {
      * @return a byte or null
      * @throws IOException if thrown by input stream
      */
-    public Byte peekOneByte() throws IOException {
+    public Byte peek() throws IOException {
         readData();
         if (count < 0) {
             // no more data
@@ -61,7 +61,16 @@ public class InputStreamWrapper {
         // if offset == count, then that may be the last byte,
         // so no need to read more data.
         while (offset > count) {
-            readData();
+            int last = count;
+            count = inputStream.read(buf);
+            offset -= last;
+            if (count < 0) {
+                break;
+            }
+            totalSize += count;
+            if (totalSize > maxReadSize) {
+                throw new InvalidCommandException("The command is too long");
+            }
         }
     }
 
@@ -72,8 +81,9 @@ public class InputStreamWrapper {
      * @return a list
      * @throws IOException if thrown by input stream
      */
-    public List<byte[]> read(int len) throws IOException {
-        List<byte[]> result = new ArrayList<>();
+    public byte[] read(int len) throws IOException {
+        byte[] result = new byte[len];
+        int index = 0;
         while (len > 0) {
             readData();
             if (count < 0) {
@@ -84,10 +94,9 @@ public class InputStreamWrapper {
             if (size > len) {
                 size = len;
             }
-            var tmp = new byte[size];
-            System.arraycopy(buf, offset, tmp, 0, tmp.length);
-            result.add(tmp);
-            len -= tmp.length;
+            System.arraycopy(buf, offset, result, index, size);
+            index += size;
+            len -= size;
             offset += size;
         }
         return result;
@@ -144,7 +153,6 @@ public class InputStreamWrapper {
         while (offset >= count) {
             int last = count;
             count = inputStream.read(buf);
-//            logger.debug("read data, offset:%d, last count:%d, new count:%d, total:%d\n", offset, last, count, totalSize);
             offset -= last;
             if (count < 0) {
                 break;

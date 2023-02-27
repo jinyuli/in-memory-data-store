@@ -57,8 +57,6 @@ tasks.register('integrationTest', Test) {
     }
 }
 
-check.dependsOn integrationTest
-
 tasks.register("integrationJar", Jar) {
     archiveBaseName = 'Integration'
     manifest {
