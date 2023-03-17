@@ -2,6 +2,7 @@ package com.codeloam.memory.store;
 
 import com.codeloam.memory.store.network.Server;
 import com.codeloam.memory.store.network.bio.BioServer;
+import com.codeloam.memory.store.network.nio.MultiThreadNioServer;
 import com.codeloam.memory.store.network.nio.NioServer;
 import org.junit.jupiter.api.Test;
 
@@ -21,12 +22,12 @@ public class ServerTest {
     @Test
     public void testStringCommand() {
         String host = "localhost";
-        int port = 3218;
+        int port = 3128;
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
 
         List<List<byte[]>> commands = CommandHelper.generateStringCommands(2);
-        Server server = new NioServer(host, port);
+        Server server = new MultiThreadNioServer(host, port);
 
         executorService.submit(new Callable<Void>() {
             @Override
@@ -56,7 +57,7 @@ public class ServerTest {
         try {
             int time = 10;
             executorService.shutdown();
-            while (!executorService.awaitTermination(10, TimeUnit.SECONDS) && time >= 0) {
+            while (!executorService.awaitTermination(1, TimeUnit.SECONDS) && time >= 0) {
                 time--;
             }
             if (time < 0) {

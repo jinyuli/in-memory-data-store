@@ -63,19 +63,22 @@ public class ClientCommandReader implements CommandReader {
         // skip the first byte
         inputWrapper.skip(1);
         switch (prefix) {
-            case '*':
+            case '*' -> {
                 return readArray(inputWrapper);
-            case '$':
+            }
+            case '$' -> {
                 return readBulkString(inputWrapper);
-            case ':':
+            }
+            case ':' -> {
                 List<ByteWord> words = readSimpleString(inputWrapper);
                 ByteWord word = words.get(0);
                 long value = Long.parseLong(word.getString());
                 return List.of(ByteWord.create(value));
-            case '+', '-':
+            }
+            case '+', '-' -> {
                 return readSimpleString(inputWrapper);
-            default:
-                throw new InvalidCommandException("Unknown sign:" + prefix);
+            }
+            default -> throw new InvalidCommandException("Unknown sign:" + prefix);
         }
     }
 

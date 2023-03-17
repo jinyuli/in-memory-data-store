@@ -47,7 +47,11 @@ public class Client {
      * @throws IOException throw by Socket
      */
     public void sendCommands(List<List<byte[]>> commandList) throws IOException {
+        int index = 0;
         for (List<byte[]> command : commandList) {
+            if (index == 1) {
+                break;
+            }
             final MeasureData data = new MeasureData();
             data.add(ClientMeasureCollector.FIELD_NAME_START);
             try (Socket socket = new Socket(host, port);
@@ -67,6 +71,7 @@ public class Client {
 //                throw e;
             }
             collector.add(data);
+            index++;
         }
     }
 

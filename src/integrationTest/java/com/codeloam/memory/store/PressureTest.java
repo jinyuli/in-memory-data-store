@@ -23,8 +23,6 @@ public class PressureTest {
         test.testStringCommand();
     }
 
-//    @Disabled("manual only")
-//    @Test
     public void testStringCommand() {
 //        Thread.sleep(10000000);
         String host = "localhost";

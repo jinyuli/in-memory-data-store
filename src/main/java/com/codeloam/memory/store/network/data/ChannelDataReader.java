@@ -17,6 +17,7 @@ import java.util.List;
 public class ChannelDataReader implements DataReader {
     private final ReadableByteChannel channel;
     private final ByteBuffer buf;
+    private final byte[] bytes;
     private int offset;
     private int count;
     private int totalSize;
@@ -25,14 +26,15 @@ public class ChannelDataReader implements DataReader {
     /**
      * Constructor.
      *
-     * @param channel channel to read data
-     * @param bufSize buffer size
+     * @param channel     channel to read data
+     * @param bufSize     buffer size
      * @param maxReadSize max bytes to read
      */
     public ChannelDataReader(ReadableByteChannel channel, int bufSize, int maxReadSize) {
         this.channel = channel;
         this.maxReadSize = maxReadSize;
-        buf = ByteBuffer.allocate(bufSize);
+        bytes = new byte[bufSize];
+        buf = ByteBuffer.wrap(bytes);
         buf.clear();
     }
 
@@ -43,7 +45,7 @@ public class ChannelDataReader implements DataReader {
             // no more data
             return null;
         }
-        return buf.get(offset);
+        return bytes[offset];
     }
 
     @Override
@@ -65,9 +67,6 @@ public class ChannelDataReader implements DataReader {
                 throw new InvalidCommandException("The command is too long");
             }
         }
-        if (offset <= count) {
-            buf.position(offset);
-        }
     }
 
     @Override
@@ -84,7 +83,7 @@ public class ChannelDataReader implements DataReader {
             if (size > len) {
                 size = len;
             }
-            buf.get(result, index, size);
+            System.arraycopy(bytes, offset, result, index, size);
             index += size;
             len -= size;
             offset += size;
@@ -102,12 +101,14 @@ public class ChannelDataReader implements DataReader {
                 break;
             }
             int index = offset;
-            while (index < count && buf.get(index) != '\r') {
+            while (index < count && bytes[index] != '\r') {
                 index++;
             }
-            var tmp = new byte[index - offset];
-            buf.get(tmp, 0, tmp.length);
-            result.add(tmp);
+            if (index > offset) {
+                var tmp = new byte[index - offset];
+                System.arraycopy(bytes, offset, tmp, 0, tmp.length);
+                result.add(tmp);
+            }
             offset = index;
             if (index < count) {
                 break;
@@ -116,6 +117,13 @@ public class ChannelDataReader implements DataReader {
         return result;
     }
 
+    public int getOffset() {
+        return offset;
+    }
+
+    public int getCount() {
+        return count;
+    }
 
     /**
      * Read more data from channel.

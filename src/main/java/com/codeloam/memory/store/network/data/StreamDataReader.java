@@ -120,9 +120,11 @@ public class StreamDataReader implements DataReader {
             while (index < count && buf[index] != '\r') {
                 index++;
             }
-            var tmp = new byte[index - offset];
-            System.arraycopy(buf, offset, tmp, 0, tmp.length);
-            result.add(tmp);
+            if (index > offset) {
+                var tmp = new byte[index - offset];
+                System.arraycopy(buf, offset, tmp, 0, tmp.length);
+                result.add(tmp);
+            }
             offset = index;
             if (index < count) {
                 break;
@@ -145,6 +147,24 @@ public class StreamDataReader implements DataReader {
     }
 
     /**
+     * Current offset, not the offset in the whole stream.
+     *
+     * @return offset
+     */
+    public int getOffset() {
+        return offset;
+    }
+
+    /**
+     * Current buf size, not the whole stream's size.
+     *
+     * @return buf size
+     */
+    public int getCount() {
+        return count;
+    }
+
+    /**
      * Read more data from input stream.
      *
      * @throws IOException if thrown by input stream
@@ -163,4 +183,5 @@ public class StreamDataReader implements DataReader {
             }
         }
     }
+
 }

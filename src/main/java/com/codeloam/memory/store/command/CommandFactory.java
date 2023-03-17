@@ -60,7 +60,6 @@ public class CommandFactory {
         if (words == null || words.size() < 1) {
             throw new IllegalArgumentException("illegal command");
         }
-
         // currently, only support single command
         String name = words.get(0).getString().toUpperCase();
         CommandConfig commandConfig = commandMap.get(name);

@@ -9,8 +9,12 @@ group 'com.codeloam.memory.store'
 version '1.0.0'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_19
+    targetCompatibility = JavaVersion.VERSION_19
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs.addAll(["--enable-preview"])
 }
 
 sourceSets {
@@ -75,6 +79,8 @@ dependencies {
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
+    integrationTestImplementation group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.36'
+    integrationTestImplementation group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.36'
     integrationTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     integrationTestImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
     integrationTestImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
