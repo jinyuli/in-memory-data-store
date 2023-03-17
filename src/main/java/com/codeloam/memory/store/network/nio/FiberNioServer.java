@@ -38,6 +38,10 @@ public class FiberNioServer extends AbstractNioServer {
         this(host, port, DatabaseType.Simple);
     }
 
+    public FiberNioServer(String host, int port, boolean writeAsync) {
+        this(host, port, new ClientRequestProcessor(), DatabaseType.Simple, false);
+    }
+
     public FiberNioServer(String host, int port, DatabaseType type) {
         this(host, port, new ClientRequestProcessor(), type, false);
     }

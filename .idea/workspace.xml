@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/AbstractNioServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/FiberNioServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/MultiThreadNioServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/NamedThreadFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/ChannelDataReaderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/data/StreamDataReaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/BenchmarkTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.bat" beforeDir="false" afterPath="$PROJECT_DIR$/client.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.bat" beforeDir="false" afterPath="$PROJECT_DIR$/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/PressureTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/PressureTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/ServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/ServerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/InvalidCommandException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/InvalidCommandException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ClientCommandReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/ChannelDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/ChannelDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/StreamDataReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/data/StreamDataReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/NioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/NioServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/ClientCommandReaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/network/ClientCommandReaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/FiberNioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/FiberNioServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/MultiThreadNioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/MultiThreadNioServer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,53 +115,7 @@
       <recent name="com.codeloam.memory.store.network.data" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.in-memory-data-store [build]">
-    <configuration name="ChannelDataReaderTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.codeloam.memory.store.network.data.ChannelDataReaderTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="ClientCommandReaderTest.testReadRespFromChannel" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;com.codeloam.memory.store.network.ClientCommandReaderTest.testReadRespFromChannel&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.in-memory-data-store [integrationJar]">
     <configuration name="ServerTest.testStringCommand" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -220,12 +160,33 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="in-memory-data-store [integrationJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="in-memory-data-store [distZip]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="distZip" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="in-memory-data-store [integrationJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -241,20 +202,41 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="in-memory-data-store [uberJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="uberJar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Gradle.in-memory-data-store [build]" />
+      <item itemvalue="Gradle.in-memory-data-store [distZip]" />
       <item itemvalue="Gradle.in-memory-data-store [integrationJar]" />
-      <item itemvalue="Gradle.ClientCommandReaderTest.testReadRespFromChannel" />
-      <item itemvalue="Gradle.ChannelDataReaderTest" />
+      <item itemvalue="Gradle.in-memory-data-store [uberJar]" />
       <item itemvalue="Gradle.ServerTest.testStringCommand" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.in-memory-data-store [build]" />
         <item itemvalue="Gradle.in-memory-data-store [integrationJar]" />
+        <item itemvalue="Gradle.in-memory-data-store [distZip]" />
+        <item itemvalue="Gradle.in-memory-data-store [uberJar]" />
+        <item itemvalue="Gradle.in-memory-data-store [build]" />
         <item itemvalue="Gradle.ServerTest.testStringCommand" />
-        <item itemvalue="Gradle.ClientCommandReaderTest.testReadRespFromChannel" />
-        <item itemvalue="Gradle.ChannelDataReaderTest" />
       </list>
     </recent_temporary>
   </component>
@@ -269,7 +251,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/MultiThreadNioServer.java</url>
-          <line>112</line>
+          <line>116</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

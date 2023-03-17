@@ -80,7 +80,8 @@ echo %JAVA_HOME%
 @rem %JAVA_EXE% -Xlog:help
 
 @rem Execute in-memory-data-store
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IN_MEMORY_DATA_STORE_OPTS%  -classpath "%CLASSPATH%" com.codeloam.memory.store.PressureTest %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IN_MEMORY_DATA_STORE_OPTS%  -classpath "%CLASSPATH%" com.codeloam.memory.store.BenchmarkTest %*
+@rem "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %IN_MEMORY_DATA_STORE_OPTS%  -classpath "%CLASSPATH%" com.codeloam.memory.store.PressureTest %*
 
 :end
 @rem End local scope for the variables with windows NT shell

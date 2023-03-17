@@ -61,6 +61,18 @@ tasks.register('integrationTest', Test) {
     }
 }
 
+tasks.register("uberJar", Jar) {
+    archiveBaseName = 'Jimds'
+    archiveClassifier = 'uber'
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar')}.collect{ zipTree(it) }
+    }
+}
+
 tasks.register("integrationJar", Jar) {
     archiveBaseName = 'Integration'
     manifest {
@@ -70,15 +82,34 @@ tasks.register("integrationJar", Jar) {
                 "Implementation-Version": "${project.version}"
         )
     }
+    println('configuration runtime classpath')
+    configurations.runtimeClasspath.each {println it }
+    println('configuration integration test runtime classpath')
+    configurations.integrationTestRuntimeClasspath.each {println it }
+
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
     from(sourceSets.main.output)
     from(sourceSets.integrationTest.output)
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar')}.collect{ zipTree(it) }
+    }
+    dependsOn configurations.integrationTestRuntimeClasspath
+    from {
+        configurations.integrationTestRuntimeClasspath.findAll { it.name.endsWith('jar')}.collect{ zipTree(it) }
+    }
 }
 
 dependencies {
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.5.0'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.1.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 
+    integrationTestAnnotationProcessor group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.36'
+    integrationTestAnnotationProcessor group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.36'
     integrationTestImplementation group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.36'
     integrationTestImplementation group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.36'
     integrationTestImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

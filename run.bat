@@ -74,7 +74,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\build\libs\Jimds-1.0.0.jar
+set CLASSPATH=%APP_HOME%\build\libs\Jimds-1.0.0-uber.jar
 
 @rem %JAVA_EXE% -Xlog:help
 
