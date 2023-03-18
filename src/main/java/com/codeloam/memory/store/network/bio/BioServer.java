@@ -91,16 +91,9 @@ public class BioServer extends AbstractServer implements Server {
             serverSocket = new ServerSocket();
             serverSocket.bind(new InetSocketAddress(host, port));
             System.out.println("Jimds is ready to accept requests on port " + port);
-            int times = 0;
             while (!stop.get()) {
                 Socket socket = serverSocket.accept();
                 process(socket);
-
-                times++;
-                if (times % 100 == 0) {
-                    times = 0;
-                    requestMeasureCollector.print();
-                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

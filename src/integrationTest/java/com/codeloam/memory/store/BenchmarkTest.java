@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author jinyu.li
@@ -23,38 +24,30 @@ import java.util.Random;
  */
 @State(Scope.Thread)
 public class BenchmarkTest {
-
+    private static final int SIZE = 1000;
     private final Client client = new Client("General", "localhost", 3128);
     private final List<List<byte[]>> fullCommands = new ArrayList<>();
     private final List<List<byte[]>> fullSmallSizeCommands = new ArrayList<>();
-    private final List<List<byte[]>> commands = new ArrayList<>();
-    private final List<List<byte[]>> smallSizeCommands = new ArrayList<>();
-
-    private Random random;
-    private int index;
+    private final AtomicInteger index = new AtomicInteger(0);
 
     @Setup
     public void setup() {
-        random = new Random();
-        fullCommands.addAll(CommandHelper.generateStringCommands(1000, 10240));
-        fullSmallSizeCommands.addAll(CommandHelper.generateStringCommands(1000, 1024));
-    }
-
-    @Setup(Level.Invocation)
-    public void setupInvocation() {
-        index = random.nextInt(fullCommands.size()/2);
+        fullCommands.addAll(CommandHelper.generateStringCommands(SIZE, 10240));
+        fullSmallSizeCommands.addAll(CommandHelper.generateStringCommands(SIZE, 1024));
     }
 
     @Benchmark
     @BenchmarkMode(Mode.All)
     public void testStringGetSetSmallSize() throws IOException {
-        client.sendCommands(fullSmallSizeCommands.subList(index*2, index*2+2));
+        int start = (index.incrementAndGet() % SIZE)/2;
+        client.sendCommands(fullSmallSizeCommands.subList(start*2, start*2+2));
     }
 
     @Benchmark
     @BenchmarkMode(Mode.All)
     public void testStringGetSet() throws IOException {
-        client.sendCommands(fullCommands.subList(index*2, index*2+2));
+        int start = (index.incrementAndGet() % SIZE)/2;
+        client.sendCommands(fullCommands.subList(start*2, start*2+2));
     }
 
     public static void main(String[] args) throws RunnerException {

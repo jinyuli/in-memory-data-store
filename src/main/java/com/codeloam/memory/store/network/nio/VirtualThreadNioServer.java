@@ -25,24 +25,24 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Nio server, requests are processed in Fiber.
+ * Nio server, requests are processed in Virtual Thread.
  *
  * @author jinyu.li
  * @since 1.0
  */
-public class FiberNioServer extends AbstractNioServer {
+public class VirtualThreadNioServer extends AbstractNioServer {
     private final Queue<Client> queue;
     private final boolean writeAsync;
 
-    public FiberNioServer(String host, int port) {
+    public VirtualThreadNioServer(String host, int port) {
         this(host, port, DatabaseType.Simple);
     }
 
-    public FiberNioServer(String host, int port, boolean writeAsync) {
+    public VirtualThreadNioServer(String host, int port, boolean writeAsync) {
         this(host, port, new ClientRequestProcessor(), DatabaseType.Simple, false);
     }
 
-    public FiberNioServer(String host, int port, DatabaseType type) {
+    public VirtualThreadNioServer(String host, int port, DatabaseType type) {
         this(host, port, new ClientRequestProcessor(), type, false);
     }
 
@@ -55,8 +55,8 @@ public class FiberNioServer extends AbstractNioServer {
      * @param type             database type
      * @param writeAsync       whether to write response async
      */
-    public FiberNioServer(String host, int port, RequestProcessor requestProcessor,
-                          DatabaseType type, boolean writeAsync) {
+    public VirtualThreadNioServer(String host, int port, RequestProcessor requestProcessor,
+                                  DatabaseType type, boolean writeAsync) {
         super(host, port, requestProcessor, type, 10);
         this.writeAsync = writeAsync;
         queue = new ConcurrentLinkedQueue<>();

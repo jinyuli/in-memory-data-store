@@ -1,17 +1,12 @@
 package com.codeloam.memory.store;
 
 import com.codeloam.memory.store.network.Server;
-import com.codeloam.memory.store.network.bio.BioServer;
-import com.codeloam.memory.store.network.nio.FiberNioServer;
-import com.codeloam.memory.store.network.nio.MultiThreadNioServer;
-import com.codeloam.memory.store.network.nio.NioServer;
+import com.codeloam.memory.store.network.ServerFactory;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-
-import java.util.Arrays;
 
 /**
  * Main.
@@ -45,16 +40,8 @@ public class Main {
             boolean useNio = commandLine.hasOption("use-nio");
             boolean multiThread = commandLine.hasOption("multi-thread");
             boolean virtualThread = commandLine.hasOption("virtual-thread");
-            if (multiThread) {
-                server = new MultiThreadNioServer(host, port, writeAsync);
-            } else if (virtualThread) {
-                server = new FiberNioServer(host, port, writeAsync);
-            } else if (useNio) {
-                server = new NioServer(host, port);
-            } else {
-                server = new BioServer(host, port);
-            }
 
+            server = ServerFactory.create(host, port, writeAsync, multiThread, virtualThread, useNio);
             server.start();
         } catch (ParseException e) {
             e.printStackTrace();

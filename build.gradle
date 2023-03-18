@@ -82,10 +82,6 @@ tasks.register("integrationJar", Jar) {
                 "Implementation-Version": "${project.version}"
         )
     }
-    println('configuration runtime classpath')
-    configurations.runtimeClasspath.each {println it }
-    println('configuration integration test runtime classpath')
-    configurations.integrationTestRuntimeClasspath.each {println it }
 
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
