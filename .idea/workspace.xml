@@ -5,13 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ServerFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/InvalidCommandException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDouble.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleLong.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/BenchmarkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/integrationTest/java/com/codeloam/memory/store/BenchmarkTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/bio/BioServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/FiberNioServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/nio/VirtualThreadNioServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DataType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/database/simple/SimpleDatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/database/simple/SimpleDatabaseTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,8 +119,8 @@
       <recent name="com.codeloam.memory.store.network.data" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.in-memory-data-store [uberJar]">
-    <configuration name="ServerTest.testStringCommand" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.SimpleDatabaseTest">
+    <configuration name="SimpleDatabaseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -126,9 +131,32 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":integrationTest" />
+            <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.codeloam.memory.store.ServerTest.testStringCommand&quot;" />
+            <option value="&quot;com.codeloam.memory.store.database.simple.SimpleDatabaseTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="SimpleDatabaseTest.testExecuteWithNumberCommand" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.codeloam.memory.store.database.simple.SimpleDatabaseTest.testExecuteWithNumberCommand&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -150,27 +178,6 @@
         <option name="taskNames">
           <list>
             <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="in-memory-data-store [distZip]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="distZip" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -223,19 +230,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Gradle.SimpleDatabaseTest" />
+      <item itemvalue="Gradle.SimpleDatabaseTest.testExecuteWithNumberCommand" />
       <item itemvalue="Gradle.in-memory-data-store [build]" />
-      <item itemvalue="Gradle.in-memory-data-store [distZip]" />
       <item itemvalue="Gradle.in-memory-data-store [integrationJar]" />
       <item itemvalue="Gradle.in-memory-data-store [uberJar]" />
-      <item itemvalue="Gradle.ServerTest.testStringCommand" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SimpleDatabaseTest" />
+        <item itemvalue="Gradle.SimpleDatabaseTest.testExecuteWithNumberCommand" />
         <item itemvalue="Gradle.in-memory-data-store [uberJar]" />
         <item itemvalue="Gradle.in-memory-data-store [build]" />
         <item itemvalue="Gradle.in-memory-data-store [integrationJar]" />
-        <item itemvalue="Gradle.in-memory-data-store [distZip]" />
-        <item itemvalue="Gradle.ServerTest.testStringCommand" />
       </list>
     </recent_temporary>
   </component>
@@ -255,7 +262,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java</url>
-          <line>59</line>
+          <line>76</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>

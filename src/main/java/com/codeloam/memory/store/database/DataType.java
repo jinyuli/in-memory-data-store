@@ -12,7 +12,8 @@ public enum DataType {
     List(2),
     Hash(3),
     Set(4),
-    SortedSet(5);
+    SortedSet(5),
+    Number(6);
 
     private final int type;
 

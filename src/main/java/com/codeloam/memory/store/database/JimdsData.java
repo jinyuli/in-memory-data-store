@@ -1,5 +1,7 @@
 package com.codeloam.memory.store.database;
 
+import com.codeloam.memory.store.network.ByteWord;
+
 /**
  * Base class for all data structures.
  *
@@ -8,4 +10,5 @@ package com.codeloam.memory.store.database;
  */
 public abstract class JimdsData {
     public abstract DataType getDataType();
+    public abstract ByteWord get();
 }

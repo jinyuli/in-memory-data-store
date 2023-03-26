@@ -16,15 +16,32 @@ import java.util.stream.Collectors;
  * @since 1.0
  */
 public class CommandFactory {
+    public static final String SYSTEM_COMMAND_PING = "PING";
+
+    public static final String STRING_COMMAND_GET = "GET";
+    public static final String STRING_COMMAND_SET = "SET";
+
+    public static final String NUMBER_COMMAND_NGET = "NGET";
+    public static final String NUMBER_COMMAND_NSET = "NSET";
+    public static final String NUMBER_COMMAND_INCR = "INRC";
+    public static final String NUMBER_COMMAND_DECR = "DECR";
+    public static final String NUMBER_COMMAND_INCRBY = "INCRBY";
+    public static final String NUMBER_COMMAND_DECRBY = "DECRBY";
     private static CommandFactory singleton;
 
     private final Map<String, CommandConfig> commandMap;
 
     private CommandFactory() {
         List<CommandConfig> commandConfigs = List.of(
-                new CommandConfig("PING", false, false, false, null, DataType.System),
-                new CommandConfig("GET", true, false, false, null, DataType.String),
-                new CommandConfig("SET", true, true, false, null, DataType.String)
+                new CommandConfig(SYSTEM_COMMAND_PING, false, false, false, null, DataType.System),
+                new CommandConfig(STRING_COMMAND_GET, true, false, false, null, DataType.String),
+                new CommandConfig(STRING_COMMAND_SET, true, true, false, null, DataType.String),
+                new CommandConfig(NUMBER_COMMAND_NGET, true, false, false, null, DataType.Number),
+                new CommandConfig(NUMBER_COMMAND_NSET, true, true, false, null, DataType.Number),
+                new CommandConfig(NUMBER_COMMAND_INCR, true, false, false, null, DataType.Number),
+                new CommandConfig(NUMBER_COMMAND_DECR, true, false, false, null, DataType.Number),
+                new CommandConfig(NUMBER_COMMAND_INCRBY, true, false, false, null, DataType.Number),
+                new CommandConfig(NUMBER_COMMAND_DECRBY, true, false, false, null, DataType.Number)
         );
         commandMap = new HashMap<>();
         for (CommandConfig commandConfig : commandConfigs) {

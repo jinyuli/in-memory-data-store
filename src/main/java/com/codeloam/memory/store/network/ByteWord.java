@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
  */
 public abstract class ByteWord implements Comparable<ByteWord> {
     private static final String PATTERN_LONG = "^\\d+$";
+    private static final String PATTERN_DOUBLE = "^\\d+(\\.\\d+)?$";
 
     /**
      * Create an instance of ByteWord with given string.
@@ -30,6 +31,16 @@ public abstract class ByteWord implements Comparable<ByteWord> {
             throw new IllegalArgumentException("empty word");
         }
         return new SingleByteWord(word.getBytes(StandardCharsets.UTF_8));
+    }
+
+    /**
+     * Create an instance of ByteWord with given double.
+     *
+     * @param word string
+     * @return an instance of ByteWord
+     */
+    public static ByteWord create(double word) {
+        return new DoubleByteWord(word);
     }
 
     /**
@@ -98,7 +109,47 @@ public abstract class ByteWord implements Comparable<ByteWord> {
      */
     public boolean isNumber() {
         String str = getString();
-        return str != null && str.matches("\\d+");
+        return str != null && str.matches(PATTERN_DOUBLE);
+    }
+
+    /**
+     * Whether the word is a long.
+     *
+     * @return true if it's a long
+     */
+    public boolean isLong() {
+        String str = getString();
+        return str != null && str.matches(PATTERN_LONG);
+    }
+
+    /**
+     * Whether the word is a double.
+     *
+     * @return true if it's a double
+     */
+    public boolean isDouble() {
+        String str = getString();
+        return str != null && str.matches(PATTERN_DOUBLE);
+    }
+
+    /**
+     * Return a long value, only valid if isLong() is true.
+     *
+     * @return number
+     */
+    public long getLong() {
+        String str = getString();
+        return Long.parseLong(str);
+    }
+
+    /**
+     * Return a double value, only valid if isDouble() is true.
+     *
+     * @return number
+     */
+    public double getDouble() {
+        String str = getString();
+        return Double.parseDouble(str);
     }
 
     /**
@@ -195,6 +246,26 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         }
 
         @Override
+        public boolean isLong() {
+            return true;
+        }
+
+        @Override
+        public boolean isDouble() {
+            return false;
+        }
+
+        @Override
+        public long getLong() {
+            return value;
+        }
+
+        @Override
+        public double getDouble() {
+            return 0;
+        }
+
+        @Override
         public boolean isNumber() {
             return true;
         }
@@ -242,6 +313,98 @@ public abstract class ByteWord implements Comparable<ByteWord> {
         @Override
         public String toString() {
             return "NumberByteWord{"
+                    + "value=" + value
+                    + '}';
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
+        }
+
+        @Override
+        public void write(DataWriter writer) throws IOException {
+            writer.write(bytes);
+        }
+    }
+
+    private static class DoubleByteWord extends ByteWord {
+        private final double value;
+        private final byte[] bytes;
+
+        public DoubleByteWord(double value) {
+            this.value = value;
+            bytes = String.valueOf(value).getBytes(StandardCharsets.UTF_8);
+        }
+
+        @Override
+        public boolean isLong() {
+            return false;
+        }
+
+        @Override
+        public boolean isDouble() {
+            return true;
+        }
+
+        @Override
+        public long getLong() {
+            return 0;
+        }
+
+        @Override
+        public double getDouble() {
+            return value;
+        }
+
+        @Override
+        public boolean isNumber() {
+            return true;
+        }
+
+        @Override
+        public long getNumber() {
+            return 0;
+        }
+
+        @Override
+        public int size() {
+            return bytes.length;
+        }
+
+        @Override
+        public byte[] get() {
+            return bytes;
+        }
+
+        @Override
+        byte getByte(int i) {
+            return bytes[i];
+        }
+
+        @Override
+        public String getString() {
+            return new String(bytes);
+        }
+
+        @Override
+        public int compareTo(ByteWord o) {
+            ByteWord a = this;
+            if (a == o) {
+                return 0;
+            }
+            if (o == null) {
+                return 1;
+            }
+            if (o.isNumber()) {
+                return Double.compare(value, o.getNumber());
+            }
+            return super.compareTo(o);
+        }
+
+        @Override
+        public String toString() {
+            return "DoubleByteWord{"
                     + "value=" + value
                     + '}';
         }

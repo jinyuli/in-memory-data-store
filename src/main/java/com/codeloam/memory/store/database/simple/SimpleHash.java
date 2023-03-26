@@ -1,6 +1,7 @@
 package com.codeloam.memory.store.database.simple;
 
 import com.codeloam.memory.store.database.JimdsHash;
+import com.codeloam.memory.store.network.ByteWord;
 
 import java.util.HashMap;
 
@@ -35,5 +36,10 @@ public class SimpleHash<K extends Comparable<K>, V> extends JimdsHash<K, V> {
     @Override
     public boolean exist(K key) {
         return hashMap.containsKey(key);
+    }
+
+    @Override
+    public ByteWord get() {
+        return null;
     }
 }
