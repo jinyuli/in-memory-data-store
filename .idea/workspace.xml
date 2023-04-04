@@ -5,18 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d64536c2-3dce-4532-8e88-7df52b0389da" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/InvalidCommandException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDouble.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleLong.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/executor/AbstractExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/executor/Executor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/executor/ListExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/executor/NumberExecutor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/executor/StringExecutor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/DataType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/JimdsString.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDouble.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleDouble.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleHash.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/network/ByteWord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/database/simple/SimpleDatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/codeloam/memory/store/database/simple/SimpleDatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleLong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleLong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/database/simple/SimpleString.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,8 +105,8 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;ignore.preview.features.used&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/book_projects/in-memory-data-store/src/main/java/com/codeloam/memory/store/measure&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DevTools/Java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;
@@ -262,7 +266,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/codeloam/memory/store/command/CommandFactory.java</url>
-          <line>76</line>
+          <line>99</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>

@@ -27,5 +27,5 @@ public abstract class JimdsString extends JimdsData {
      *
      * @return a ByteWord
      */
-    public abstract ByteWord get();
+    public abstract ByteWord getData();
 }

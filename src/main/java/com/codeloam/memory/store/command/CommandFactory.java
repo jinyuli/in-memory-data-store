@@ -27,6 +27,19 @@ public class CommandFactory {
     public static final String NUMBER_COMMAND_DECR = "DECR";
     public static final String NUMBER_COMMAND_INCRBY = "INCRBY";
     public static final String NUMBER_COMMAND_DECRBY = "DECRBY";
+
+    public static final String LIST_COMMAND_LINDEX = "LINDEX";
+    public static final String LIST_COMMAND_LINSERT = "LINSERT";
+    public static final String LIST_COMMAND_LLEN = "LLEN";
+    public static final String LIST_COMMAND_LPUSH = "LPUSH";
+    public static final String LIST_COMMAND_RPUSH = "RPUSH";
+    public static final String LIST_COMMAND_LPOP = "LPOP";
+    public static final String LIST_COMMAND_RPOP = "RPOP";
+    public static final String LIST_COMMAND_LTRIM = "LTRIM";
+    public static final String LIST_COMMAND_LSET = "LSET";
+    public static final String LIST_COMMAND_LREM = "LREM";
+    public static final String LIST_COMMAND_LRANG = "LRANG";
+
     private static CommandFactory singleton;
 
     private final Map<String, CommandConfig> commandMap;
@@ -41,7 +54,17 @@ public class CommandFactory {
                 new CommandConfig(NUMBER_COMMAND_INCR, true, false, false, null, DataType.Number),
                 new CommandConfig(NUMBER_COMMAND_DECR, true, false, false, null, DataType.Number),
                 new CommandConfig(NUMBER_COMMAND_INCRBY, true, false, false, null, DataType.Number),
-                new CommandConfig(NUMBER_COMMAND_DECRBY, true, false, false, null, DataType.Number)
+                new CommandConfig(NUMBER_COMMAND_DECRBY, true, false, false, null, DataType.Number),
+                new CommandConfig(LIST_COMMAND_LPUSH, true, true, true, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_RPUSH, true, true, true, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LPOP, true, false, false, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_RPOP, true, false, false, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LLEN, true, false, false, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LINDEX, true, true, false, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LINSERT, true, true, true, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LSET, true, true, true, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LREM, true, true, true, null, DataType.List),
+                new CommandConfig(LIST_COMMAND_LRANG, true, true, true, null, DataType.List)
         );
         commandMap = new HashMap<>();
         for (CommandConfig commandConfig : commandConfigs) {

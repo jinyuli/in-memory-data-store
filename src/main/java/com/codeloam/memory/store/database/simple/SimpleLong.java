@@ -22,7 +22,7 @@ public class SimpleLong extends JimdsNumber {
     }
 
     @Override
-    public ByteWord get() {
+    public ByteWord getData() {
         return ByteWord.create(value);
     }
 

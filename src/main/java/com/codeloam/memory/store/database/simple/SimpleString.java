@@ -40,7 +40,7 @@ public class SimpleString extends JimdsString {
     }
 
     @Override
-    public ByteWord get() {
+    public ByteWord getData() {
         return byteWord;
     }
 }

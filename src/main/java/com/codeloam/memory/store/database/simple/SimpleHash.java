@@ -39,7 +39,7 @@ public class SimpleHash<K extends Comparable<K>, V> extends JimdsHash<K, V> {
     }
 
     @Override
-    public ByteWord get() {
+    public ByteWord getData() {
         return null;
     }
 }

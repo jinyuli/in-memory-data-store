@@ -10,5 +10,5 @@ import com.codeloam.memory.store.network.ByteWord;
  */
 public abstract class JimdsData {
     public abstract DataType getDataType();
-    public abstract ByteWord get();
+    public abstract ByteWord getData();
 }
